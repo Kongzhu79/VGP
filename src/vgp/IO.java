@@ -26,7 +26,6 @@ public class IO {
     }
     public void InputOutput()throws IOException{
         IO io = new IO();
-
         filNamn = this.folderName() + "in";
         filNamnKonstanter = this.folderName() + filNamnKonstanter;
         inputList = io.FReader(filNamn);

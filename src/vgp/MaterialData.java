@@ -19,7 +19,7 @@ public class MaterialData {
             temp = md.Luftspalt();
         }
         else if(i == 1){
-            temp = md.GN(x);
+            temp = md.normalgips(x);
         }
         else if(i == 2){
             temp = md.GFsultan(x);
@@ -152,6 +152,68 @@ public class MaterialData {
 
         return temp;
     }
+
+    public double[][] normalgips(double x){
+        double[][] temp = new double [13][6];
+
+//De här materialdata är de som används som standard för normalgips
+
+//Justering av gipsvärden för att stämma bättre med VGP.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixade till nya värden
+        temp[0][1] = 0.2124;
+        temp[1][1] = 0.2124;
+        temp[2][1] = 0.1416;
+        temp[3][1] = 0.1652;
+        temp[4][1] = 0.1888;
+        temp[5][1] = 0.354;
+        temp[6][1] = 1.18;
+        temp[7][1] = 3.54;
+        temp[8][1] = 7.08;
+        temp[9][1] = 11.8;
+        temp[10][1] = 11.8;
+        temp[11][1] = 11.8;
+        temp[12][1] = 11.8;
+
+        //c
+        temp[0][2] = 266;
+        temp[1][2] = 12000;
+        temp[2][2] = 266;
+        temp[3][2] = 266;
+        temp[4][2] = 1063;
+        temp[5][2] = 1063;
+        temp[6][2] = 1063;
+        temp[7][2] = 1063;
+        temp[8][2] = 1063;
+        temp[9][2] = 1063;
+        temp[10][2] = 1063;
+        temp[11][2] = 1063;
+        temp[12][2] = 1063;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 790;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 21;
+        }
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+
 
     public double[][] GN(double x){
         double[][] temp = new double [13][6];

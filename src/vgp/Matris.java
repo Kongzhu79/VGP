@@ -79,7 +79,6 @@ public class Matris {
         }
         return matrisNew;
     }
-
     public double[] arraySubtraktionHud(double[] array1, double[] array2){
         int a = array1.length;
         double[] arrayNew = new double[array1.length];
@@ -92,5 +91,4 @@ public class Matris {
         }
         return arrayNew;
     }
-
 }

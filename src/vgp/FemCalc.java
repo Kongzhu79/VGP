@@ -161,7 +161,6 @@ public class FemCalc {
         int cnt = 0;
         luftspalt = new int[globalM];
         double[][] CSplit = new double[globalM][globalM];
-
         for(ArrayList<double[][]> materialTemp : materialSplit){
             for(double[][] skiktData : materialTemp){
                 if(skiktData[0][1] == 0){

@@ -16,9 +16,8 @@ public class Konstanter {
     public static int MODEL;
 
 /* 1 = Specific heat, each layer is one element
- * 2 = Specific heat, each layer is divided into multiple elements
- * 3 = Specific heat, each layer is divided into multiple elements. Considers Pennes' Bio-heat equation.
- * 4 = Enthalpy, each layer is divided into multiple elements
+ * 30 = Specific heat, each layer is divided into multiple elements
+ * 3 = Enthalpy, each layer is divided into multiple elements
  */
 
     public static int ANTAL_SKIKT_PER_MM;

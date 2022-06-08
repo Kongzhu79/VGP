@@ -29,7 +29,6 @@ public class Material {
     public double[] getSkiktTjocklek(){
         return skiktTjocklek;
     }
-
     public void material(ArrayList<String[]> materialList, boolean splitModel){
 
         MaterialData md = new MaterialData();
