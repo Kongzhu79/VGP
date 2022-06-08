@@ -18,7 +18,7 @@ public class IO {
     String filNamn;
     String filNamnKonstanter = "VGP_config";
     ArrayList<String[]> inputList;
-    ArrayList<String[]> constVector;
+    ArrayList<String[]> constList;
     int time;
 
     public int getTime(){
@@ -31,7 +31,7 @@ public class IO {
         filNamnKonstanter = this.folderName() + filNamnKonstanter;
         inputList = io.FReader(filNamn);
 
-        constVector = io.FReaderKonstanter(filNamnKonstanter);
+        constList = io.FReaderKonstanter(filNamnKonstanter);
         time = io.getTime();
     }
     public String folderName()throws IOException{

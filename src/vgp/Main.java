@@ -23,7 +23,7 @@ public class Main {
         Konstanter kons = new Konstanter();
 
         io.InputOutput();
-        kons.setConstants(io.constVector);
+        kons.setConstants(io.constList);
 
 //Explicit solver, Specific heat, each layer is one element
         if(Konstanter.MODEL == 1){

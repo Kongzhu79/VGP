@@ -147,8 +147,6 @@ public class Fire {
         double maxTemperatur = this.getISO(tidTillAvsvalning * 60);
         double tidTillSvalt = (tidTillAvsvalning + (maxTemperatur - Konstanter.KONSTANT_TEMPERATUR_BAKSIDA) / Konstanter.AVSVALNINGSHASTIGHET) * 60;
 
-//System.out.println(tid + "\t" + gamma + "\t" + gamma * tid);
-
         if(tid <= tidTillAvsvalning * 60){
             Tf = 20 + 1325 * (1 - 0.324 * Math.exp(-0.2 * gamma * tid / 3600.0) - 0.204 * Math.exp(-1.7 * gamma * tid / 3600.0) - 0.472 * Math.exp(-19 * gamma * tid / 3600.0));
         }
