@@ -10,11 +10,11 @@ package vgp;
  * @author jsm
  */
 public class MaterialData {
-    
+
     public double[][] md(double x, int i){
         MaterialData md = new MaterialData();
         double[][] temp;
-        
+
         if (i == 0){
             temp = md.Luftspalt();
         }
@@ -22,7 +22,7 @@ public class MaterialData {
             temp = md.normalgips(x);
         }
         else if(i == 2){
-            temp = md.GFsultan(x);
+            temp = md.GF2(x);
         }
         else if(i == 3){
             temp = md.Steel(x);
@@ -120,14 +120,59 @@ public class MaterialData {
         else if(i == 34){
             temp = md.cotton(x);
         }
+        else if(i == 35){
+            temp = md.habito(x);
+        }
+        else if(i == 36){
+            temp = md.lwc(x);
+        }
+        else if(i == 37){
+            temp = md.RWB(x, 30.0);
+        }
+        else if(i == 38){
+            temp = md.RWB(x, 70.0); // ska vara 70 för att få bättre överensstämmelse med VGP
+        }
+        else if(i == 39){
+            temp = md.RWB(x, 85.0); // ska vara 85 för att få bättre överensstämmelse med VGP
+        }
+        else if(i == 40){
+            temp = md.RWB(x, 120.0); // ska vara 120 för att få bättre överensstämmelse med VGP
+        }
+        else if(i == 41){
+            temp = md.ultimate(x);
+        }
+        else if(i == 42){
+            temp = md.woodBoard(x);
+        }
+        else if(i == 43){
+            temp = md.ultimateTest(x);
+        }
+        else if(i == 44){
+            temp = md.aluminium(x);
+        }
+        else if(i == 45){
+            temp = md.renrumsvagg(x);
+        }
+        else if(i == 46){
+            temp = md.robust(x);
+        }
+        else if(i == 47){
+            temp = md.puts(x);
+        }
+        else if(i == 48){
+            temp = md.fermacellA1(x);
+        }
+        else if(i == 49){
+            temp = md.RW170(x, 170.0);
+        }
         else{
             System.out.println("Materialet " + " finns inte");
             temp = null;
         }
-        
+
         return temp;
     }
-    
+
     public double[][] iso(double x){
         double[][] temp = new double[2][6];
 
@@ -153,6 +198,60 @@ public class MaterialData {
         return temp;
     }
 
+    public double[][] GN(double x){
+        double[][] temp = new double [13][6];
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixade till nya värden
+        temp[0][1] = 0.2124;
+        temp[1][1] = 0.2124;
+        temp[2][1] = 0.1416;
+        temp[3][1] = 0.1652;
+        temp[4][1] = 0.1888;
+        temp[5][1] = 0.354;
+        temp[6][1] = 1.18;
+        temp[7][1] = 3.54;
+        temp[8][1] = 7.08;
+        temp[9][1] = 11.8;
+        temp[10][1] = 11.8;
+        temp[11][1] = 11.8;
+        temp[12][1] = 11.8;
+
+        //c
+        temp[0][2] = 223;
+        temp[1][2] = 2435;
+        temp[2][2] = 266;
+        temp[3][2] = 266;
+        temp[4][2] = 1063;
+        temp[5][2] = 1063;
+        temp[6][2] = 1063;
+        temp[7][2] = 1063;
+        temp[8][2] = 1063;
+        temp[9][2] = 1063;
+        temp[10][2] = 1063;
+        temp[11][2] = 1063;
+        temp[12][2] = 1063;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 790;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 21;
+        }
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
     public double[][] normalgips(double x){
         double[][] temp = new double [13][6];
 
@@ -214,9 +313,14 @@ public class MaterialData {
         return temp;
     }
 
-
-    public double[][] GN(double x){
+    public double[][] robust(double x){
         double[][] temp = new double [13][6];
+
+//Anpassade data för att stämma med Gyprocs robustskiva
+
+//Justering av gipsvärden för att stämma bättre med VGP.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
 
         //Temperaturer
         for(int i = 0; i < 13; i++){
@@ -229,23 +333,93 @@ public class MaterialData {
         temp[2][1] = 0.1416;
         temp[3][1] = 0.1652;
         temp[4][1] = 0.1888;
-        temp[5][1] = 0.354;
-        temp[6][1] = 1.18;
-        temp[7][1] = 3.54;
-        temp[8][1] = 7.08;
-        temp[9][1] = 11.8;
+        temp[5][1] = 0.1888;
+        temp[6][1] = 0.1888;
+        temp[7][1] = 0.354;
+        temp[8][1] = 3.54;
+        temp[9][1] = 7.08;
         temp[10][1] = 11.8;
         temp[11][1] = 11.8;
         temp[12][1] = 11.8;
 
         //c
-        temp[0][2] = 223;
-        temp[1][2] = 2435;
+        temp[0][2] = 266;
+        temp[1][2] = 12000;
         temp[2][2] = 266;
         temp[3][2] = 266;
         temp[4][2] = 1063;
         temp[5][2] = 1063;
         temp[6][2] = 1063;
+        temp[7][2] = 1063;
+        temp[8][2] = 1063;
+        temp[9][2] = 1063;
+        temp[10][2] = 1063;
+        temp[11][2] = 1063;
+        temp[12][2] = 1063;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 900;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 21;
+        }
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+
+
+    public double[][] GN3(double x){
+        double[][] temp = new double [13][6];
+
+//Justering av specifikt värme för att ge snabbare uppvärmning initialt.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
+
+        //Temperaturer
+        temp[0][0] = 0;
+        temp[1][0] = 80;
+        temp[2][0] = 100;
+        temp[3][0] = 200;
+        temp[4][0] = 300;
+        temp[5][0] = 400;
+        temp[6][0] = 500;
+        temp[7][0] = 600;
+        temp[8][0] = 700;
+        temp[9][0] = 800;
+        temp[10][0] = 900;
+        temp[11][0] = 1000;
+        temp[12][0] = 1200;
+
+        //k - fixade till nya värden
+        temp[0][1] = 0.2124;
+        temp[1][1] = 0.2124;
+        temp[2][1] = 0.2124;
+        temp[3][1] = 0.1416;
+        temp[4][1] = 0.1652;
+        temp[5][1] = 0.1888;
+        temp[6][1] = 0.354;
+        temp[7][1] = 1.18;
+        temp[8][1] = 3.54;
+        temp[9][1] = 7.08;
+        temp[10][1] = 11.8;
+        temp[11][1] = 11.8;
+        temp[12][1] = 11.8;
+
+        //c
+        temp[0][2] = 20;
+        temp[1][2] = 20;
+        temp[2][2] = 20000;
+        temp[3][2] = 1000;
+        temp[4][2] = 1000;
+        temp[5][2] = 400;
+        temp[6][2] = 400;
         temp[7][2] = 1063;
         temp[8][2] = 1063;
         temp[9][2] = 1063;
@@ -263,7 +437,7 @@ public class MaterialData {
             temp[i][4] = 21;
         }
 
-        //Densitet
+        //tjocklek
         for(int i = 0; i < 13; i++){
             temp[i][5] = x;
         }
@@ -319,6 +493,126 @@ public class MaterialData {
 
         //Tjocklek
         for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] GF2(double x){
+        double[][] temp = new double [14][6];
+
+//Justering av gipsvärden för att stämma bättre med VGP.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
+
+        //Temperaturer
+        for(int i = 0; i < 14; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - Fixat till nya värden
+        temp[0][1] = 0.299;
+        temp[1][1] = 0.299;
+        temp[2][1] = 0.180;
+        temp[3][1] = 0.180;
+        temp[4][1] = 0.180;
+        temp[5][1] = 0.180;
+        temp[6][1] = 0.180;
+        temp[7][1] = 0.180;
+        temp[8][1] = 0.239;
+        temp[9][1] = 0.958;
+        temp[10][1] = 11.97;
+        temp[11][1] = 23.94;
+        temp[12][1] = 47.9;
+        temp[13][1] = 47.9;
+
+        //c
+        temp[0][2] = 400;
+        temp[1][2] = 12000;
+        temp[2][2] = 500;
+        temp[3][2] = 500;
+        temp[4][2] = 1000;
+        temp[5][2] = 1000;
+        temp[6][2] = 1000;
+        temp[7][2] = 700;
+        temp[8][2] = 1000;
+        temp[9][2] = 1000;
+        temp[10][2] = 1000;
+        temp[11][2] = 900;
+        temp[12][2] = 900;
+        temp[13][2] = 900;
+
+        //Densitet
+        for(int i = 0; i < 14; i++){
+            temp[i][3] = 900;
+        }
+
+        //Fukt
+        for(int i = 0; i < 14; i++){
+            temp[i][4] = 21;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 14; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] fermacellA1(double x){
+        double[][] temp = new double [14][6];
+
+//Justering av gipsvärden för att stämma bättre med VGP.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
+
+        //Temperaturer
+        for(int i = 0; i < 14; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - Fixat till nya värden
+        temp[0][1] = 0.299;
+        temp[1][1] = 0.299;
+        temp[2][1] = 0.180;
+        temp[3][1] = 0.180;
+        temp[4][1] = 0.180;
+        temp[5][1] = 0.180;
+        temp[6][1] = 0.180;
+        temp[7][1] = 0.180;
+        temp[8][1] = 0.239;
+        temp[9][1] = 0.958;
+        temp[10][1] = 11.97;
+        temp[11][1] = 23.94;
+        temp[12][1] = 47.9;
+        temp[13][1] = 47.9;
+
+        //c
+        temp[0][2] = 400;
+        temp[1][2] = 12000;
+        temp[2][2] = 500;
+        temp[3][2] = 500;
+        temp[4][2] = 1000;
+        temp[5][2] = 1000;
+        temp[6][2] = 1000;
+        temp[7][2] = 700;
+        temp[8][2] = 1000;
+        temp[9][2] = 1000;
+        temp[10][2] = 1000;
+        temp[11][2] = 900;
+        temp[12][2] = 900;
+        temp[13][2] = 900;
+
+        //Densitet
+        for(int i = 0; i < 14; i++){
+            temp[i][3] = 1200;
+        }
+
+        //Fukt
+        for(int i = 0; i < 14; i++){
+            temp[i][4] = 21;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 14; i++){
             temp[i][5] = x;
         }
         return temp;
@@ -512,6 +806,175 @@ public class MaterialData {
         return temp;
     }
     public double[][] RW(double x, double dens){
+        double[][] temp = new double [15][6];
+
+        //Temperaturer
+        for(int i = 0; i < 15; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        if(dens < 60){
+            temp[0][1] = 0.0354;
+            temp[1][1] = 0.0590;
+            temp[2][1] = 0.0944;
+            temp[3][1] = 0.1534;
+            temp[4][1] = 0.2242;
+            temp[5][1] = 0.3186;
+            temp[6][1] = 0.4366;
+            temp[7][1] = 0.649;
+            temp[8][1] = 1.475;
+            temp[9][1] = 2.36;
+            temp[10][1] = 4.956;
+            temp[11][1] = 10.62;
+            temp[12][1] = 17.7;
+            temp[13][1] = 17.7; //extrarad för numerisk stabilitet
+            temp[14][1] = 17.7; //extrarad för numerisk stabilitet
+        }
+        else if(dens < 80){
+            temp[0][1] = 0.0354;
+            temp[1][1] = 0.0472;
+            temp[2][1] = 0.0708;
+            temp[3][1] = 0.1062;
+            temp[4][1] = 0.1652;
+            temp[5][1] = 0.236;
+            temp[6][1] = 0.3186;
+            temp[7][1] = 0.5074;
+            temp[8][1] = 0.944;
+            temp[9][1] = 1.18;
+            temp[10][1] = 1.77;
+            temp[11][1] = 2.36;
+            temp[12][1] = 4.72;
+            temp[13][1] = 4.72; //extrarad för numerisk stabilitet
+            temp[14][1] = 4.72; //extrarad för numerisk stabilitet
+        }
+        else if(dens < 120){
+            temp[0][1] = 0.0354;
+            temp[1][1] = 0.0472;
+            temp[2][1] = 0.0590;
+            temp[3][1] = 0.0826;
+            temp[4][1] = 0.118;
+            temp[5][1] = 0.177;
+            temp[6][1] = 0.2242;
+            temp[7][1] = 0.354;
+            temp[8][1] = 0.5192;
+            temp[9][1] = 0.7316;
+            temp[10][1] = 0.944;
+            temp[11][1] = 1.18;
+            temp[12][1] = 1.475;
+            temp[13][1] = 1.475; //extrarad för numerisk stabilitet
+            temp[14][1] = 1.475; //extrarad för numerisk stabilitet
+        }
+        else{
+            temp[0][1] = 0.0354;
+            temp[1][1] = 0.0472;
+            temp[2][1] = 0.0590;
+            temp[3][1] = 0.0826;
+            temp[4][1] = 0.0944;
+            temp[5][1] = 0.118;
+            temp[6][1] = 0.1652;
+            temp[7][1] = 0.2242;
+            temp[8][1] = 0.295;
+            temp[9][1] = 0.4248;
+            temp[10][1] = 0.59;
+            temp[11][1] = 0.767;
+            temp[12][1] = 0.944;
+            temp[13][1] = 0.944; //extrarad för numerisk stabilitet
+            temp[14][1] = 0.944; //extrarad för numerisk stabilitet
+        }
+
+        //c
+        temp[0][2] = 750;
+        temp[1][2] = 850;
+        temp[2][2] = 950;
+        temp[3][2] = 1000;
+        temp[4][2] = 1100;
+        temp[5][2] = 1000;
+        temp[6][2] = 1300;
+        temp[7][2] = 1430;
+        temp[8][2] = 1600;
+        temp[9][2] = 1600;
+        temp[10][2] = 1600;
+        temp[11][2] = 1600;
+        temp[12][2] = 1600;
+        temp[13][2] = 1600; //extrarad för numerisk stabilitet
+        temp[14][2] = 1600; //extrarad för numerisk stabilitet
+
+        //Densitet
+        for(int i = 0; i < 15; i++){
+            temp[i][3] = dens;
+        }
+
+        //Fukt
+        for(int i = 0; i < 15; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 15; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] RW170(double x, double dens){
+        double[][] temp = new double [15][6];
+
+        //Temperaturer
+        for(int i = 0; i < 15; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        temp[0][1] = 0.0354;
+        temp[1][1] = 0.0472;
+        temp[2][1] = 0.0590;
+        temp[3][1] = 0.0826;
+        temp[4][1] = 0.0944;
+        temp[5][1] = 0.118;
+        temp[6][1] = 0.1652;
+        temp[7][1] = 0.2242;
+        temp[8][1] = 0.295;
+        temp[9][1] = 0.4248;
+        temp[10][1] = 0.59;
+        temp[11][1] = 0.767;
+        temp[12][1] = 0.944;
+        temp[13][1] = 0.944; //extrarad för numerisk stabilitet
+        temp[14][1] = 0.944; //extrarad för numerisk stabilitet
+
+        //c
+        temp[0][2] = 750;
+        temp[1][2] = 850;
+        temp[2][2] = 950;
+        temp[3][2] = 1000;
+        temp[4][2] = 1100;
+        temp[5][2] = 1000;
+        temp[6][2] = 1300;
+        temp[7][2] = 1430;
+        temp[8][2] = 1600;
+        temp[9][2] = 1600;
+        temp[10][2] = 1600;
+        temp[11][2] = 1600;
+        temp[12][2] = 1600;
+        temp[13][2] = 1600; //extrarad för numerisk stabilitet
+        temp[14][2] = 1600; //extrarad för numerisk stabilitet
+
+        //Densitet
+        for(int i = 0; i < 15; i++){
+            temp[i][3] = dens;
+        }
+
+        //Fukt
+        for(int i = 0; i < 15; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 15; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] RWB(double x, double dens){
         double[][] temp = new double [13][6];
 
         //Temperaturer
@@ -613,10 +1076,10 @@ public class MaterialData {
         return temp;
     }
     public double[][] fibreGlass(double x){
-        double[][] temp = new double [13][6];
+        double[][] temp = new double [15][6];
 
         //Temperaturer
-        for(int i = 0; i < 13; i++){
+        for(int i = 0; i < 15; i++){
             temp[i][0] = i * 100;
         }
 
@@ -634,6 +1097,8 @@ public class MaterialData {
         temp[10][1] = 75.0;
         temp[11][1] = 90.0;
         temp[12][1] = 100.0;
+        temp[13][1] = 100.0;
+        temp[14][1] = 100.0;
 
         //c
         temp[0][2] = 1340;
@@ -649,10 +1114,124 @@ public class MaterialData {
         temp[10][2] = 1390;
         temp[11][2] = 1400;
         temp[12][2] = 1400;
+        temp[13][2] = 1400;
+        temp[14][2] = 1400;
+
+        //Densitet
+        for(int i = 0; i < 15; i++){
+            temp[i][3] = 20;
+        }
+
+        //Fukt
+        for(int i = 0; i < 15; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 15; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] ultimate(double x){
+        double[][] temp = new double [15][6];
+
+        //Temperaturer
+        for(int i = 0; i < 15; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        temp[0][1] = 0.0354;
+        temp[1][1] = 0.0590;
+        temp[2][1] = 0.0944;
+        temp[3][1] = 0.1534;
+        temp[4][1] = 0.2242;
+        temp[5][1] = 0.3186;
+        temp[6][1] = 0.4366;
+        temp[7][1] = 0.649;
+        temp[8][1] = 1.475;
+        temp[9][1] = 2.36;
+        temp[10][1] = 4.956;
+        temp[11][1] = 10.62;
+        temp[12][1] = 17.7;
+        temp[13][1] = 17.7;
+        temp[14][1] = 17.7;
+
+        //c
+        temp[0][2] = 750;
+        temp[1][2] = 850;
+        temp[2][2] = 950;
+        temp[3][2] = 1000;
+        temp[4][2] = 1100;
+        temp[5][2] = 1000;
+        temp[6][2] = 1300;
+        temp[7][2] = 1430;
+        temp[8][2] = 1600;
+        temp[9][2] = 1600;
+        temp[10][2] = 1600;
+        temp[11][2] = 1600;
+        temp[12][2] = 1600;
+        temp[13][2] = 1600;
+        temp[14][2] = 1600;
+
+        //Densitet
+        for(int i = 0; i < 15; i++){
+            temp[i][3] = 20;
+        }
+
+        //Fukt
+        for(int i = 0; i < 15; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 15; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] ultimateTest(double x){
+        double[][] temp = new double [13][6];
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        temp[0][1] = 0.0354;
+        temp[1][1] = 0.0590;
+        temp[2][1] = 0.0944;
+        temp[3][1] = 0.1534;
+        temp[4][1] = 0.2242;
+        temp[5][1] = 0.3186;
+        temp[6][1] = 0.4366;
+        temp[7][1] = 0.649;
+        temp[8][1] = 1.475;
+        temp[9][1] = 2.36;
+        temp[10][1] = 4.956;
+        temp[11][1] = 10.62;
+        temp[12][1] = 17.7;
+
+        //c
+        temp[0][2] = 750;
+        temp[1][2] = 850;
+        temp[2][2] = 950;
+        temp[3][2] = 1000;
+        temp[4][2] = 1100;
+        temp[5][2] = 1000;
+        temp[6][2] = 1300;
+        temp[7][2] = 1430;
+        temp[8][2] = 1600;
+        temp[9][2] = 1600;
+        temp[10][2] = 1600;
+        temp[11][2] = 1600;
+        temp[12][2] = 1600;
 
         //Densitet
         for(int i = 0; i < 13; i++){
-            temp[i][3] = 20;
+            temp[i][3] = 18;
         }
 
         //Fukt
@@ -809,9 +1388,85 @@ public class MaterialData {
         return temp;
     }
     public double[][] wood(double x){
+        double[][] temp = new double [15][6];
+
+        IO io = new IO();
+//        double[] woodData = io.woodData();
+        double densitet = 450;
+        double fukt = 5;
+
+        //Temperaturer
+        temp[0][0] = 0;
+        temp[1][0] = 98;
+        temp[2][0] = 99;
+        temp[3][0] = 120;
+        temp[4][0] = 121;
+        temp[5][0] = 200;
+        temp[6][0] = 250;
+        temp[7][0] = 300;
+        temp[8][0] = 350;
+        temp[9][0] = 400;
+        temp[10][0] = 500;
+        temp[11][0] = 600;
+        temp[12][0] = 800;
+        temp[13][0] = 1200;
+        temp[14][0] = 1400;
+
+        //k
+        temp[0][1] = 0.12;
+        temp[1][1] = 0.126;
+        temp[2][1] = 0.132;
+        temp[3][1] = 0.138;
+        temp[4][1] = 0.144;
+        temp[5][1] = 0.15;
+        temp[6][1] = 0.123;
+        temp[7][1] = 0.097;
+        temp[8][1] = 0.07;
+        temp[9][1] = 0.08;
+        temp[10][1] = 0.09;
+        temp[11][1] = 0.22;
+        temp[12][1] = 1.5; //i orginal 0.35
+        temp[13][1] = 10.5;  //i orginal 1.50
+        temp[14][1] = 10.5;  //i orginal 1.50
+
+        //c
+        temp[0][2] = 1530 * (1 + fukt / 100.0);
+        temp[1][2] = 1770 * (1 + fukt / 100.0);
+        temp[2][2] = 13600 * (1 + fukt / 100.0);
+        temp[3][2] = 13500 * 1;
+        temp[4][2] = 2120 * 1;
+        temp[5][2] = 2000 * 1;
+        temp[6][2] = 1620 * 0.93;
+        temp[7][2] = 710 * 0.76;
+        temp[8][2] = 850 * 0.52;
+        temp[9][2] = 1000 * 0.38;
+        temp[10][2] = 1200 * 0.33;
+        temp[11][2] = 1400 * 0.28;
+        temp[12][2] = 1650 * 0.26;
+        temp[13][2] = 1650 * 0.001;
+        temp[14][2] = 1650 * 0.001;
+
+        //Densitet
+        for(int i = 0; i < 15; i++){
+            temp[i][3] = densitet;
+        }
+
+        //Fukt
+        for(int i = 0; i < 15; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 15; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] woodBoard(double x){
         double[][] temp = new double [14][6];
 
         IO io = new IO();
+//        double[] woodData = io.woodData();
         double densitet = 450;
         double fukt = 5;
 
@@ -833,19 +1488,19 @@ public class MaterialData {
 
         //k
         temp[0][1] = 0.12;
-        temp[1][1] = 0.126;
-        temp[2][1] = 0.132;
-        temp[3][1] = 0.138;
-        temp[4][1] = 0.144;
-        temp[5][1] = 0.15;
-        temp[6][1] = 0.123;
-        temp[7][1] = 0.097;
-        temp[8][1] = 0.07;
-        temp[9][1] = 0.08;
-        temp[10][1] = 0.09;
-        temp[11][1] = 0.22;
-        temp[12][1] = 1.5; //i orginal 0.35
-        temp[13][1] = 10.5;  //i orginal 1.50
+        temp[1][1] = 0.30;
+        temp[2][1] = 0.30;
+        temp[3][1] = 0.15;
+        temp[4][1] = 0.15;
+        temp[5][1] = 0.18;
+        temp[6][1] = 0.14;
+        temp[7][1] = 0.12;
+        temp[8][1] = 0.09;
+        temp[9][1] = 0.14;
+        temp[10][1] = 0.23;
+        temp[11][1] = 0.49;
+        temp[12][1] = 0.74; //i orginal 0.35
+        temp[13][1] = 4.2;  //i orginal 1.50
 
         //c
         temp[0][2] = 1530 * (1 + fukt / 100.0);
@@ -879,7 +1534,7 @@ public class MaterialData {
         }
         return temp;
     }
-    public double[][] Concrete(double x){
+    public double[][] Concrete(double x){ //värden enligt EC
         double[][] temp = new double [13][6];
         double fuktFaktor = 5.5;
 
@@ -944,7 +1599,7 @@ public class MaterialData {
         }
         return temp;
     }
-    public double[][] Betong(double x){
+    public double[][] Betong(double x){ //Värden enligt VGP
         double[][] temp = new double [13][6];
         double fuktFaktor = 5.5;
 
@@ -999,6 +1654,50 @@ public class MaterialData {
         return temp;
     }
 
+    public double[][] lwc(double x){ //Lättballastbetong enligt EN 1994-1-2
+        double[][] temp = new double [13][6];
+
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k
+        temp[0][1] = 1.0;
+        temp[1][1] = 0.9375;
+        temp[2][1] = 0.875;
+        temp[3][1] = 0.8125;
+        temp[4][1] = 0.75;
+        temp[5][1] = 0.6875;
+        temp[6][1] = 0.625;
+        temp[7][1] = 0.5625;
+        temp[8][1] = 0.5;
+        temp[9][1] = 0.5;
+        temp[10][1] = 0.5;
+        temp[11][1] = 0.5;
+        temp[12][1] = 0.5;
+
+        //c
+        for(int i = 0; i < 13; i++){
+            temp[i][2] = 840;
+        }
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 550;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+
     public double[][] Vermiculux(double x){
         double[][] temp = new double [13][6];
 
@@ -1008,19 +1707,19 @@ public class MaterialData {
         }
 
         //k - fixat till nya värden
-        temp[0][0] = 0.0826;
         temp[0][1] = 0.0826;
-        temp[0][2] = 0.0826;
-        temp[0][3] = 0.0944;
-        temp[0][4] = 0.1062;
-        temp[0][5] = 0.1298;
-        temp[0][6] = 0.1534;
-        temp[0][7] = 0.1888;
-        temp[0][8] = 0.2124;
-        temp[0][9] = 0.2478;
-        temp[0][10] = 0.2714;
-        temp[0][11] = 0.2950;
-        temp[0][12] = 0.3540;
+        temp[1][1] = 0.0826;
+        temp[2][1] = 0.0826;
+        temp[3][1] = 0.0944;
+        temp[4][1] = 0.1062;
+        temp[5][1] = 0.1298;
+        temp[6][1] = 0.1534;
+        temp[7][1] = 0.1888;
+        temp[8][1] = 0.2124;
+        temp[9][1] = 0.2478;
+        temp[10][1] = 0.2714;
+        temp[11][1] = 0.2950;
+        temp[12][1] = 0.3540;
 
         //c
         for(int i = 0; i < 13; i++){
@@ -1053,19 +1752,19 @@ public class MaterialData {
         }
 
         //k - fixat till nya värden
-        temp[0][0] = 0.0165;
         temp[0][1] = 0.0165;
-        temp[0][2] = 0.0165;
-        temp[0][3] = 0.0165;
-        temp[0][4] = 0.0165;
-        temp[0][5] = 0.0165;
-        temp[0][6] = 0.0165;
-        temp[0][7] = 0.0201;
-        temp[0][8] = 0.0236;
-        temp[0][9] = 0.0354;
-        temp[0][10] = 0.0590;
-        temp[0][11] = 0.1180;
-        temp[0][12] = 0.2360;
+        temp[1][1] = 0.0165;
+        temp[2][1] = 0.0165;
+        temp[3][1] = 0.0165;
+        temp[4][1] = 0.0165;
+        temp[5][1] = 0.0165;
+        temp[6][1] = 0.0165;
+        temp[7][1] = 0.0201;
+        temp[8][1] = 0.0236;
+        temp[9][1] = 0.0354;
+        temp[10][1] = 0.0590;
+        temp[11][1] = 0.1180;
+        temp[12][1] = 0.2360;
 
         //c
         for(int i = 0; i < 13; i++){
@@ -1365,7 +2064,7 @@ public class MaterialData {
     }
 
     public double[][] custom(double x){
-        
+
         double[][] temp = new double[2][6];
 
         //Temperaturspann
@@ -1373,12 +2072,12 @@ public class MaterialData {
         temp[1][0] = 1200;
 
         //värmeledningstal
-        temp[0][1] = 0.118;
-        temp[1][1] = 0.118;
+        temp[0][1] = 1;
+        temp[1][1] = 1;
 
         //Specifikt värme
-        temp[0][2] = 840;
-        temp[1][2] = 840;
+        temp[0][2] = 1000;
+        temp[1][2] = 1000;
 
         //Densitet
         temp[0][3] = 1000;
@@ -1396,7 +2095,7 @@ public class MaterialData {
     }
 
     public double[][] outerShell(double x){
-        
+
         double[][] temp = new double[4][6];
 
         //Temperaturspann
@@ -1438,7 +2137,7 @@ public class MaterialData {
         return temp;
     }
     public double[][] moistureBarrier(double x){
-        
+
         double[][] temp = new double[4][6];
 
         //Temperaturspann
@@ -1480,7 +2179,7 @@ public class MaterialData {
         return temp;
     }
     public double[][] thermalBarrier(double x){
-        
+
         double[][] temp = new double[4][6];
 
         //Temperaturspann
@@ -1522,7 +2221,7 @@ public class MaterialData {
         return temp;
     }
     public double[][] epidermis(double x){
-        
+
         double[][] temp = new double[2][6];
 
         //Temperaturspann
@@ -1552,7 +2251,7 @@ public class MaterialData {
         return temp;
     }
     public double[][] dermis(double x){
-        
+
         double[][] temp = new double[2][6];
 
         //Temperaturspann
@@ -1582,7 +2281,7 @@ public class MaterialData {
         return temp;
     }
     public double[][] subcutaneous(double x){
-        
+
         double[][] temp = new double[2][6];
 
         //Temperaturspann
@@ -1613,7 +2312,7 @@ public class MaterialData {
     }
 
     public double[][] cotton(double x){
-        
+
         double[][] temp = new double[2][6];
 
         //Temperaturspann
@@ -1640,6 +2339,228 @@ public class MaterialData {
         temp[0][5] = x;
         temp[1][5] = x;
 
+        return temp;
+    }
+
+    public double[][] habito(double x){
+        double[][] temp = new double [13][6];
+
+//Justering av gipsvärden för att stämma bättre med VGP.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - Fixat till nya värden
+        temp[0][1] = 0.299;
+        temp[1][1] = 0.299;
+        temp[2][1] = 0.180;
+        temp[3][1] = 0.180;
+        temp[4][1] = 0.180;
+        temp[5][1] = 0.180;
+        temp[6][1] = 0.180;
+        temp[7][1] = 0.180;
+        temp[8][1] = 0.239;
+        temp[9][1] = 0.958;
+        temp[10][1] = 11.97;
+        temp[11][1] = 23.94;
+        temp[12][1] = 47.9;
+
+        //c
+        temp[0][2] = 400;
+        temp[1][2] = 12000;
+        temp[2][2] = 500;
+        temp[3][2] = 500;
+        temp[4][2] = 1000;
+        temp[5][2] = 1000;
+        temp[6][2] = 1000;
+        temp[7][2] = 700;
+        temp[8][2] = 1000;
+        temp[9][2] = 1000;
+        temp[10][2] = 1000;
+        temp[11][2] = 900;
+        temp[12][2] = 900;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 900;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 21;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+    public double[][] aluminium(double x){
+
+        double[][] temp = new double[13][6];
+
+//För värmeledningens skull antas legeringen vara i 3xxx och 6xxx-serien. Detta ger högre värmeledningstal vilket kan ses som på säkra sidan.
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - Fixat till nya värden
+        for(int i = 0; i < 13; i++){
+            temp[i][1] = 0.07*temp[i][0] + 190;
+        }
+
+        //c
+        for(int i = 0; i < 13; i++){
+            temp[i][2] = 0.41*temp[i][0] + 903;
+        }
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 2700;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+
+        return temp;
+    }
+
+    public double[][] renrumsvagg(double x){
+        double[][] temp = new double [13][6];
+
+        //Temperaturer
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        temp[0][1] = 0.0354;
+        temp[1][1] = 0.0472;
+        temp[2][1] = 0.0708;
+        temp[3][1] = 0.1062;
+        temp[4][1] = 1.00;
+        temp[5][1] = 8.00;
+        temp[6][1] = 16.0;
+        temp[7][1] = 32.0;
+        temp[8][1] = 32.0;
+        temp[9][1] = 32.0;
+        temp[10][1] = 32.0;
+        temp[11][1] = 32.0;
+        temp[12][1] = 32.0;
+
+/*      //k - fixat till nya värden
+        temp[0][1] = 0.0354;
+        temp[1][1] = 0.0472;
+        temp[2][1] = 0.0708;
+        temp[3][1] = 0.1062;
+        temp[4][1] = 0.1652;
+        temp[5][1] = 0.236;
+        temp[6][1] = 0.3186;
+        temp[7][1] = 0.5074;
+        temp[8][1] = 0.944;
+        temp[9][1] = 1.18;
+        temp[10][1] = 1.77;
+        temp[11][1] = 2.36;
+        temp[12][1] = 4.72;
+*/
+        //c
+        temp[0][2] = 750;
+        temp[1][2] = 850;
+        temp[2][2] = 950;
+        temp[3][2] = 1000;
+        temp[4][2] = 1100;
+        temp[5][2] = 1000;
+        temp[6][2] = 1300;
+        temp[7][2] = 1430;
+        temp[8][2] = 1600;
+        temp[9][2] = 1600;
+        temp[10][2] = 1600;
+        temp[11][2] = 1600;
+        temp[12][2] = 1600;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 80;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
+        return temp;
+    }
+
+    public double[][] puts(double x){ //Utifrån Tims beräknignar
+        double[][] temp = new double [13][6];
+        double fuktFaktor = 5.5;
+
+        for(int i = 0; i < 13; i++){
+            temp[i][0] = i * 100;
+        }
+
+        //k - fixat till nya värden
+        temp[0][1] = 1.7936;
+        temp[1][1] = 1.4160;
+        temp[2][1] = 1.2390;
+        temp[3][1] = 1.1682;
+        temp[4][1] = 1.0974;
+        temp[5][1] = 2.0148;
+        temp[6][1] = 4.9440;
+        temp[7][1] = 8.8732;
+        temp[8][1] = 16.8024;
+        temp[9][1] = 32.7316;
+        temp[10][1] = 32.6372;
+        temp[11][1] = 32.5428;
+        temp[12][1] = 32.4484;
+
+        //c
+        temp[0][2] = 900;
+        temp[1][2] = 900;
+        temp[2][2] = 900.0 + 380 * fuktFaktor;
+        temp[3][2] = 900.0 + 380 * fuktFaktor;
+        temp[4][2] = 1000;
+        temp[5][2] = 1050;
+        temp[6][2] = 1100;
+        temp[7][2] = 1100;
+        temp[8][2] = 1100;
+        temp[9][2] = 1100;
+        temp[10][2] = 1100;
+        temp[11][2] = 1100;
+        temp[12][2] = 1100;
+
+        //Densitet
+        for(int i = 0; i < 13; i++){
+            temp[i][3] = 2400;
+        }
+
+        //Fukt
+        for(int i = 0; i < 13; i++){
+            temp[i][4] = 0;
+        }
+
+        //Tjocklek
+        for(int i = 0; i < 13; i++){
+            temp[i][5] = x;
+        }
         return temp;
     }
 

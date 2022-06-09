@@ -79,16 +79,4 @@ public class Matris {
         }
         return matrisNew;
     }
-    public double[] arraySubtraktionHud(double[] array1, double[] array2){
-        int a = array1.length;
-        double[] arrayNew = new double[array1.length];
-
-        for(int i = 0; i < a; i++){
-            if(i > Konstanter.PENNES_HUD_START && i < Konstanter.PENNES_HUD_SLUT){
-                arrayNew[i] = array1[i] - array2[i];
-            }
-            arrayNew[i] = array1[i] - array2[i];
-        }
-        return arrayNew;
-    }
 }

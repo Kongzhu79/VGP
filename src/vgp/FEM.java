@@ -97,7 +97,14 @@ public class FEM {
         double Tf;
         double Tbaksida;
         int cnt = 0;
+        int c = 1;
+        System.out.print("Progression of the calculation: ");
+
         for(int i = 0; i < tid * Konstanter.TIDSSTEG_PER_SEKUND + 1; i++){
+            if(i >= tid * Konstanter.TIDSSTEG_PER_SEKUND / 10 * c){
+                System.out.print("%");
+                c++;
+            }
             Tf = fire.getTf(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
             Tbaksida = fire.getTbaksida(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
             if((i % Konstanter.TIDSSTEG_PER_SEKUND) == 0){
@@ -127,6 +134,7 @@ public class FEM {
         //K är den matris där värmeledningen specificeras
 
         //Steg 3: upprepa proceduren tills sluttiden
+        System.out.println();
     }
 }
 

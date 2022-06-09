@@ -199,33 +199,4 @@ public class FemCalc {
         }
         return K;
     }
-    public double[][] CpSplitHud(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
-        FemCalc fc = new FemCalc();
-        int a = materialSplit.size();
-        int cnt = 0;
-        ArrayList<double[][]> materialTemp;
-        luftspalt = new int[globalM];
-        double[][] CSplit = new double[globalM][globalM];
-        double G;
-
-        for(int i = 0; i < a; i++){
-            materialTemp = materialSplit.get(i);
-            if(i >= Konstanter.PENNES_HUD_START && i <= Konstanter.PENNES_HUD_SLUT){
-                G = Konstanter.PENNES_G;
-            }
-            else{
-                G = 0.;
-            }
-            for(double[][] skiktData : materialTemp){
-                if(skiktData[0][1] == 0){
-                    luftspalt[cnt] = 1;
-                }
-                CSplit[cnt][cnt] = CSplit[cnt][cnt] + 1.0 * fc.getC(skiktData, T ,cnt) * fc.getRho(skiktData) * fc.getX(skiktData) / 2 + G * fc.getX(skiktData) / 2 * (T[cnt] - Konstanter.KONSTANT_TEMPERATUR_HUD);
-                CSplit[cnt + 1][cnt + 1] = 1.0 * fc.getC(skiktData, T ,cnt) * fc.getRho(skiktData) * fc.getX(skiktData) / 2 + G * fc.getX(skiktData) / 2 * (T[cnt] - Konstanter.KONSTANT_TEMPERATUR_HUD);
-
-                cnt++;
-            }
-        }
-        return CSplit;
-    }
 }

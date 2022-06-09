@@ -39,7 +39,6 @@ public class Material {
         skiktCount[1] = 1;
         layerListSplit = new ArrayList<>();
         skiktTjocklek = new double[materialList.size()];
-        int cntHud = 0;
 
         for(int i = 0; i < materialList.size(); i++){
             String[] materialString = materialList.get(i);
@@ -59,11 +58,6 @@ public class Material {
                     cnt++;
                 }
                 else{
-                    if(mtlnr == 32 || mtlnr == 33){
-                        cntHud++;
-                        Konstanter.PENNES_HUD_SLUT = Math.max(Konstanter.PENNES_HUD_SLUT, cnt);
-                        Konstanter.PENNES_HUD_START = Konstanter.PENNES_HUD_SLUT - cntHud;
-                    }
                     int y = 0;
                     double x1 = 1000 * x;
                     int x2 = (int) x1;
@@ -89,116 +83,161 @@ public class Material {
     }
     public int materialNumber(String materialNamn){
         int i = -1;
-        
-            if(materialNamn.equalsIgnoreCase("luftspalt")){
-                i = 0;
-            }
-            else if(materialNamn.equalsIgnoreCase("GN") || materialNamn.equalsIgnoreCase("normalgips")){
-                i = 1;
-            }
-            else if(materialNamn.equalsIgnoreCase("GF")){
-                i = 2;
-            }
-            else if(materialNamn.equalsIgnoreCase("steel") || materialNamn.equalsIgnoreCase("stål")){
-                i = 3;
-            }
-            else if(materialNamn.equalsIgnoreCase("concrete")){
-                i = 4;
-            }
-            else if(materialNamn.equalsIgnoreCase("betong")){
-                i = 5;
-            }
-            else if(materialNamn.equalsIgnoreCase("GNsultan")){
-                i = 6;
-            }
-            else if(materialNamn.equalsIgnoreCase("GFsultan") || materialNamn.equalsIgnoreCase("brandgips")){
-                i = 7;
-            }
-            else if(materialNamn.equalsIgnoreCase("RW30")){
-                i = 8;
-            }
-            else if(materialNamn.equalsIgnoreCase("RW75")){
-                i = 9; // ska vara 70 för att få bättre överensstämmelse med VGP
-            }
-            else if(materialNamn.equalsIgnoreCase("RW100")){
-                i = 10; // ska vara 85 för att få bättre överensstämmelse med VGP
-            }
-            else if(materialNamn.equalsIgnoreCase("RW140")){
-                i = 11; // ska vara 120 för att få bättre överensstämmelse med VGP
-            }
-            else if(materialNamn.equalsIgnoreCase("iso")){
-                i = 12;
-            }
-            else if(materialNamn.equalsIgnoreCase("fibreglass") || materialNamn.equalsIgnoreCase("glasull")){
-                i = 13;
-            }
-            else if(materialNamn.equalsIgnoreCase("minerit")){
-                i = 14;
-            }
-            else if(materialNamn.equalsIgnoreCase("promatectH")){
-                i = 15;
-            }
-            else if(materialNamn.equalsIgnoreCase("promatectL")){
-                i = 16;
-            }
-            else if(materialNamn.equalsIgnoreCase("wood") || materialNamn.equalsIgnoreCase("trä")){
-                i = 17;
-            }
-            else if(materialNamn.equalsIgnoreCase("vermiculux")){
-                i = 18;
-            }
-            else if(materialNamn.equalsIgnoreCase("brennix") || materialNamn.equalsIgnoreCase("brennicks")){
-                i = 19;
-            }
-            else if(materialNamn.equalsIgnoreCase("meyco1350") || materialNamn.equalsIgnoreCase("FireShield")){
-                i = 20;
-            }
-            else if(materialNamn.equalsIgnoreCase("cellplast") || materialNamn.equalsIgnoreCase("EPS")){
-                i = 21;
-            }
-            else if(materialNamn.equalsIgnoreCase("laminate")){
-                i = 22;
-            }
-            else if(materialNamn.equalsIgnoreCase("core")){
-                i = 23;
-            }
-            else if(materialNamn.equalsIgnoreCase("MarinePlusBlanket")){
-                i = 24;
-            }
-            else if(materialNamn.equalsIgnoreCase("Adhesive")){
-                i = 25;
-            }
-            else if(materialNamn.equalsIgnoreCase("tegel") || materialNamn.equalsIgnoreCase("brick")){
-                i = 26;
-            }
-            else if(materialNamn.equalsIgnoreCase("custom") || materialNamn.equalsIgnoreCase("eget")){
-                i = 27;
-            }
-            else if(materialNamn.equalsIgnoreCase("outerShell")){
-                i = 28;
-            }
-            else if(materialNamn.equalsIgnoreCase("moistureBarrier")){
-                i = 29;
-            }
-            else if(materialNamn.equalsIgnoreCase("thermalBarrier")){
-                i = 30;
-            }
-            else if(materialNamn.equalsIgnoreCase("epidermis")){
-                i = 31;
-            }
-            else if(materialNamn.equalsIgnoreCase("dermis")){
-                i = 32;
-            }
-            else if(materialNamn.equalsIgnoreCase("subcutaneous")){
-                i = 33;
-            }
-            else if(materialNamn.equalsIgnoreCase("cotton")){
-                i = 34;
-            }
-            else{
-                System.out.println("Materialet " + materialNamn + " är inte definerat.");
-            }
-        
+
+        if(materialNamn.equalsIgnoreCase("luftspalt")){
+            i = 0;
+        }
+        else if(materialNamn.equalsIgnoreCase("GN") || materialNamn.equalsIgnoreCase("normalgips")){
+            i = 1;
+        }
+        else if(materialNamn.equalsIgnoreCase("GF") || materialNamn.equalsIgnoreCase("brandgips")){
+            i = 2;
+        }
+        else if(materialNamn.equalsIgnoreCase("steel") || materialNamn.equalsIgnoreCase("stål")){
+            i = 3;
+        }
+        else if(materialNamn.equalsIgnoreCase("concrete")){
+            i = 4;
+        }
+        else if(materialNamn.equalsIgnoreCase("betong")){
+            i = 5;
+        }
+        else if(materialNamn.equalsIgnoreCase("GNsultan")){
+            i = 6;
+        }
+        else if(materialNamn.equalsIgnoreCase("GFsultan")){
+            i = 7;
+        }
+        else if(materialNamn.equalsIgnoreCase("RW30")){
+            i = 8;
+        }
+        else if(materialNamn.equalsIgnoreCase("RW75")){
+            i = 9; // ska vara 70 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("RW100")){
+            i = 10; // ska vara 85 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("RW140")){
+            i = 11; // ska vara 120 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("iso")){
+            i = 12;
+        }
+        else if(materialNamn.equalsIgnoreCase("fibreglass") || materialNamn.equalsIgnoreCase("glasull")){
+            i = 13;
+        }
+        else if(materialNamn.equalsIgnoreCase("minerit")){
+            i = 14;
+        }
+        else if(materialNamn.equalsIgnoreCase("promatectH")){
+            i = 15;
+        }
+        else if(materialNamn.equalsIgnoreCase("promatectL")){
+            i = 16;
+        }
+        else if(materialNamn.equalsIgnoreCase("wood") || materialNamn.equalsIgnoreCase("trä")){
+            i = 17;
+        }
+        else if(materialNamn.equalsIgnoreCase("vermiculux")){
+            i = 18;
+        }
+        else if(materialNamn.equalsIgnoreCase("brennix") || materialNamn.equalsIgnoreCase("brennicks")){
+            i = 19;
+        }
+        else if(materialNamn.equalsIgnoreCase("meyco1350") || materialNamn.equalsIgnoreCase("FireShield")){
+            i = 20;
+        }
+        else if(materialNamn.equalsIgnoreCase("cellplast") || materialNamn.equalsIgnoreCase("EPS")){
+            i = 21;
+        }
+        else if(materialNamn.equalsIgnoreCase("laminate")){
+            i = 22;
+        }
+        else if(materialNamn.equalsIgnoreCase("core")){
+            i = 23;
+        }
+        else if(materialNamn.equalsIgnoreCase("MarinePlusBlanket")){
+            i = 24;
+        }
+        else if(materialNamn.equalsIgnoreCase("Adhesive")){
+            i = 25;
+        }
+        else if(materialNamn.equalsIgnoreCase("tegel") || materialNamn.equalsIgnoreCase("brick")){
+            i = 26;
+        }
+        else if(materialNamn.equalsIgnoreCase("custom") || materialNamn.equalsIgnoreCase("eget")){
+            i = 27;
+        }
+        else if(materialNamn.equalsIgnoreCase("outerShell")){
+            i = 28;
+        }
+        else if(materialNamn.equalsIgnoreCase("moistureBarrier")){
+            i = 29;
+        }
+        else if(materialNamn.equalsIgnoreCase("thermalBarrier")){
+            i = 30;
+        }
+        else if(materialNamn.equalsIgnoreCase("epidermis")){
+            i = 31;
+        }
+        else if(materialNamn.equalsIgnoreCase("dermis")){
+            i = 32;
+        }
+        else if(materialNamn.equalsIgnoreCase("subcutaneous")){
+            i = 33;
+        }
+        else if(materialNamn.equalsIgnoreCase("cotton")){
+            i = 34;
+        }
+        else if(materialNamn.equalsIgnoreCase("habito")){
+            i = 35;
+        }
+        else if(materialNamn.equalsIgnoreCase("lwc")){
+            i = 36;
+        }
+        else if(materialNamn.equalsIgnoreCase("RWB30")){
+            i = 37;
+        }
+        else if(materialNamn.equalsIgnoreCase("RWB75")){
+            i = 38; // ska vara 70 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("RWB100")){
+            i = 39; // ska vara 85 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("RWB140")){
+            i = 40; // ska vara 120 för att få bättre överensstämmelse med VGP
+        }
+        else if(materialNamn.equalsIgnoreCase("ultimate")){
+            i = 41;
+        }
+        else if(materialNamn.equalsIgnoreCase("woodBoard")){
+            i = 42;
+        }
+        else if(materialNamn.equalsIgnoreCase("ultimateTest")){
+            i = 43;
+        }
+        else if(materialNamn.equalsIgnoreCase("aluminium")){
+            i = 44;
+        }
+        else if(materialNamn.equalsIgnoreCase("renrumsvagg")){
+            i = 45;
+        }
+        else if(materialNamn.equalsIgnoreCase("Robust")){
+            i = 46;
+        }
+        else if(materialNamn.equalsIgnoreCase("puts")){
+            i = 47;
+        }
+        else if(materialNamn.equalsIgnoreCase("fermacellA1")){
+            i = 48;
+        }
+        else if(materialNamn.equalsIgnoreCase("RW170")){
+            i = 49; // ska vara 120 för att få bättre överensstämmelse med VGP
+        }
+        else{
+            System.out.println("Materialet " + materialNamn + " är inte definerat.");
+        }
+
         return i;
     }
 }

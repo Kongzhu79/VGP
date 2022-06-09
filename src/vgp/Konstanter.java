@@ -63,16 +63,12 @@ public class Konstanter {
     static int KONSTANT_TEMPERATUR_HUD;
 
     //Vid beräkning med arkivbrand sätts tid till påbörjad avsvalning.
-    static double TID_TILL_AVSVALNING; //Minuter
+    static double TID_TILL_MAXTEMPERATUR; //Minuter
 
     //Gamma factor for calculation of parametric fire
     static double GAMMA;
     //Vid beräkning med arkivbrand sätts avsvalningshastighet.
     static double AVSVALNINGSHASTIGHET; //grader per minut
-
-    static int PENNES_HUD_START = 0;
-    static int PENNES_HUD_SLUT = 0;
-    static double PENNES_G = 0.00125 * 3990000 * 1;
 
     public void setConstants(ArrayList<String[]> configList){
         
@@ -141,7 +137,7 @@ public class Konstanter {
         KONSTANT_TEMPERATUR_FRAMSIDA = (int) constListArray[12];
         KONSTANT_TEMPERATUR_BAKSIDA = (int) constListArray[13];
 
-        TID_TILL_AVSVALNING = constListArray[14];
+        TID_TILL_MAXTEMPERATUR = constListArray[14];
         AVSVALNINGSHASTIGHET = constListArray[15];
         GAMMA = constListArray[16];
     }

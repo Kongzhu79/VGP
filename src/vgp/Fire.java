@@ -29,7 +29,7 @@ public class Fire {
             Tf = this.getHydroCarbonFire(tid);
         }
         else if(Konstanter.BRANDKURVA == 6){
-            Tf = this.getParametricFire(tid, Konstanter.TID_TILL_AVSVALNING, Konstanter.GAMMA);
+            Tf = this.getParametricFire(tid);
         }
         return Tf;
     }
@@ -54,7 +54,7 @@ public class Fire {
             Tf = this.getHydroCarbonFire(tid);
         }
         else if(Konstanter.BAKSIDEKURVA == 6){
-            Tf = this.getParametricFire(tid, Konstanter.TID_TILL_AVSVALNING, Konstanter.GAMMA);
+            Tf = this.getParametricFire(tid);
         }
         return Tf;
     }
@@ -140,19 +140,18 @@ public class Fire {
     }
 
     //Standard fire curve including a cooling phase starting from Konstanter.TID_TILL_AVSVALNING
-    public double getParametricFire(double tid, double tidTillAvsvalning, double gamma){
+    public double getParametricFire(double tid){
 
         double Tf;
-        double avsvalningshastighetPerSekund = Konstanter.AVSVALNINGSHASTIGHET / 60.0;
-        double maxTemperatur = this.getISO(tidTillAvsvalning * 60);
-        double tidTillSvalt = (tidTillAvsvalning + (maxTemperatur - Konstanter.KONSTANT_TEMPERATUR_BAKSIDA) / Konstanter.AVSVALNINGSHASTIGHET) * 60;
+        double maxTemperatur = 20 + 1325 * (1 - 0.324 * Math.exp(-0.2 * Konstanter.GAMMA * Konstanter.TID_TILL_MAXTEMPERATUR / 60.0) - 0.204 * Math.exp(-1.7 * Konstanter.GAMMA * Konstanter.TID_TILL_MAXTEMPERATUR / 60.0) - 0.472 * Math.exp(-19 * Konstanter.GAMMA * Konstanter.TID_TILL_MAXTEMPERATUR / 60.0));
+        double tidTillSvalt = (Konstanter.TID_TILL_MAXTEMPERATUR + (maxTemperatur - Konstanter.KONSTANT_TEMPERATUR_BAKSIDA) / Konstanter.AVSVALNINGSHASTIGHET) * 60;
 
-        if(tid <= tidTillAvsvalning * 60){
-            Tf = 20 + 1325 * (1 - 0.324 * Math.exp(-0.2 * gamma * tid / 3600.0) - 0.204 * Math.exp(-1.7 * gamma * tid / 3600.0) - 0.472 * Math.exp(-19 * gamma * tid / 3600.0));
+        if(tid <= Konstanter.TID_TILL_MAXTEMPERATUR * 60){
+            Tf = 20 + 1325 * (1 - 0.324 * Math.exp(-0.2 * Konstanter.GAMMA * tid / 3600.0) - 0.204 * Math.exp(-1.7 * Konstanter.GAMMA * tid / 3600.0) - 0.472 * Math.exp(-19 * Konstanter.GAMMA * tid / 3600.0));
         }
         else if(tid <= tidTillSvalt){
-            double tidOverTidForAvsvalning = tid - tidTillAvsvalning * 60;
-            Tf = maxTemperatur - tidOverTidForAvsvalning * avsvalningshastighetPerSekund;
+            double tidOverTidForAvsvalning = tid - Konstanter.TID_TILL_MAXTEMPERATUR * 60;
+            Tf = maxTemperatur - tidOverTidForAvsvalning * Konstanter.AVSVALNINGSHASTIGHET / 60.0;
         }
         else{
             Tf = Konstanter.KONSTANT_TEMPERATUR_BAKSIDA;

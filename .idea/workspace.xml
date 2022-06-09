@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/VGP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VGP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FEM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FemCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FemCalc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Fire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Konstanter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Konstanter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/MaterialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/MaterialData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Matris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Matris.java" afterDir="false" />
@@ -45,15 +43,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "C:/Users/joakim.sandstrom/github/VGP",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/joakim.sandstrom/github/VGP&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-16.0.1" />
