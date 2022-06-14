@@ -5,6 +5,8 @@
 
 package vgp;
 
+import java.io.IOException;
+
 /**
  *
  * @author jsm
@@ -2072,8 +2074,8 @@ public class MaterialData {
         temp[1][0] = 1200;
 
         //värmeledningstal
-        temp[0][1] = 1;
-        temp[1][1] = 1;
+        temp[0][1] = 0.1;
+        temp[1][1] = 0.1;
 
         //Specifikt värme
         temp[0][2] = 1000;

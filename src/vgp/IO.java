@@ -199,4 +199,37 @@ public class IO {
         DecimalFormat df1 = new DecimalFormat("0.00");
         System.out.println("Run time: " + df1.format((endTime - startTime) / 1000000000.0).replace(",",".") + " sec");
     }
+
+    public double[][] materialReader(String materialName, double x) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(this.folderName() + "\\Material\\" + materialName + ".txt"));
+        ArrayList<String[]> materialArray = new ArrayList<>();
+
+        String a = br.readLine();
+        while(a != null){
+            materialArray.add(a.split("\t"));
+            a = br.readLine();
+        }
+        double[][] materialMatrix = new double[materialArray.size()][6];
+        for(int i = 0 ; i < materialArray.size(); i++){
+//            double[] material = new double[]
+            for(int j = 0; j < materialArray.get(i).length - 1; j++){
+                materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j]));
+            }
+            materialMatrix[i][5] = x;
+        }
+        return materialMatrix;
+    }
+    public boolean materialReader(String materialName) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(this.folderName() + "\\Material\\" + materialName + ".txt"));
+
+        String a = br.readLine();
+        boolean split = false;
+
+        if(a.split("\t")[5].equalsIgnoreCase("1")){
+            split = true;
+        }
+        return split;
+    }
 }

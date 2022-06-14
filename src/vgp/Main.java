@@ -27,7 +27,6 @@ public class Main {
 //Explicit solver, Specific heat, each layer is one element
         if(Constants.MODEL == 1){
             System.out.println("Model 1");
-//            System.out.println(io.inputList.size());
             matl.material(io.inputList, false);
             fem.fem(io.getTime(), matl.getLayerList(), cons.getAdiabatisk());
             io.SystemOut(fem.getTarray());
@@ -47,6 +46,14 @@ public class Main {
             matl.material(io.inputList, true);
             fem.femSplit(io.getTime(), matl.getLayerListSplit(), cons.getAdiabatisk());
             io.SystemOut(fem.getTarray());
+        }
+
+//Explicit solver, Specific heat, each layer is divided into multiple elements - external database
+        else if(Constants.MODEL == 4){
+            System.out.println("Model 4");
+            matl.materialFind(io.inputList, true);
+            fem.femSplit(io.getTime(), matl.getLayerListSplit(), cons.getAdiabatisk());
+            io.SystemOutSplit(matl.getLayerThickness(), fem.getTarray(), matl.getLayerCount());
         }
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);

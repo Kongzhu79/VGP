@@ -5,6 +5,7 @@
 
 package vgp;
 
+import java.io.IOException;
 import java.util.*;
 /**
  *
@@ -84,6 +85,66 @@ public class Material {
             }
         }
     }
+
+    public void materialFind(ArrayList<String[]> materialList, boolean splitModel) throws IOException {
+
+        IO io = new IO();
+
+        double[][] matl;
+        int cnt = 1;
+
+        layerCount = new int[materialList.size() + 2];
+        layerCount[0] = 0;
+        layerCount[1] = 1;
+        layerListSplit = new ArrayList<>();
+        layerList = new ArrayList<>();
+        layerThickness = new double[materialList.size()];
+
+        for(int i = 0; i < materialList.size(); i++){
+            String[] materialString = materialList.get(i);
+
+            ArrayList<double[][]> layerListTemp = new ArrayList<>();
+
+            double x = Double.parseDouble(materialString[0]) / 1000;
+            layerThickness[i] = x;
+
+            boolean split = io.materialReader(materialString[1]);
+
+            if(splitModel){
+                if(split){
+                    int y = 0;
+                    double x1 = 1000 * x;
+                    int x2 = (int) x1;
+
+                    if(x > Constants.NUMBER_OF_MM_PER_LAYER / 1000){
+                        y = x2 / Constants.NUMBER_OF_MM_PER_LAYER;
+                        if(0 < x % (1.0 * Constants.NUMBER_OF_MM_PER_LAYER / 1000)){
+                            y++;
+                        }
+                        x = x / y;
+                    }
+                    matl = io.materialReader(materialString[1], x);
+
+                    for(int j = 0; j < y; j++){
+                        layerListTemp.add(matl);
+                        cnt++;
+                    }
+                }
+                else{
+                    matl = io.materialReader(materialString[1], x);
+                    layerListTemp.add(matl);
+                    cnt++;
+                }
+                layerListSplit.add(layerListTemp);
+                layerCount[i + 2] = cnt;
+            }
+            else{
+                matl = io.materialReader(materialString[1], x);
+                layerList.add(matl);
+            }
+        }
+    }
+
     public int materialNumber(String materialNamn){
         int i = -1;
 
