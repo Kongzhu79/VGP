@@ -20,32 +20,33 @@ public class Main {
         IO io = new IO();
         Material matl = new Material();
         FEM fem = new FEM();
-        Konstanter kons = new Konstanter();
+        Constants cons = new Constants();
         io.InputOutput();
-        kons.setConstants(io.constList);
+        cons.setConstants(io.configList);
 
 //Explicit solver, Specific heat, each layer is one element
-        if(Konstanter.MODEL == 1){
+        if(Constants.MODEL == 1){
             System.out.println("Model 1");
+//            System.out.println(io.inputList.size());
             matl.material(io.inputList, false);
-            fem.fem(io.getTime(), matl.getLayerList(), kons.getAdiabatisk());
-            io.SystemUt(fem.getTarray());
+            fem.fem(io.getTime(), matl.getLayerList(), cons.getAdiabatisk());
+            io.SystemOut(fem.getTarray());
         }
 
 //Explicit solver, Specific heat, each layer is divided into multiple elements - Default model
-        else if(Konstanter.MODEL == 30){
-            System.out.println("Model 30");
+        else if(Constants.MODEL == 2){
+            System.out.println("Model 2");
             matl.material(io.inputList, true);
-            fem.femSplit(io.getTime(), matl.getLayerListSplit(), kons.getAdiabatisk());
-            io.SystemUtSplit(matl.getSkiktTjocklek(), fem.getTarray(), matl.getSkiktCount());
+            fem.femSplit(io.getTime(), matl.getLayerListSplit(), cons.getAdiabatisk());
+            io.SystemOutSplit(matl.getLayerThickness(), fem.getTarray(), matl.getLayerCount());
         }
 
 //Explicit solver, Enthalpy, each layer is divided into multiple elements
-        else if(Konstanter.MODEL == 3){
+        else if(Constants.MODEL == 3){
             System.out.println("Model 3");
             matl.material(io.inputList, true);
-            fem.femSplit(io.getTime(), matl.getLayerListSplit(), kons.getAdiabatisk());
-            io.SystemUt(fem.getTarray());
+            fem.femSplit(io.getTime(), matl.getLayerListSplit(), cons.getAdiabatisk());
+            io.SystemOut(fem.getTarray());
         }
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);

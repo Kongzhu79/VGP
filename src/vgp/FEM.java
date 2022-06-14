@@ -25,115 +25,125 @@ public class FEM {
         return Tarray;
     }
 
-    public void fem(int tid, ArrayList<double[][]> material, boolean adiabatisk)throws IOException{
+    public void fem(int tid, ArrayList<double[][]> material, boolean adiabatic)throws IOException{
 
-        Matris m = new Matris();
+        Matrix m = new Matrix();
 
         double[] T = new double[material.size() + 1];
         double[] Q;
         Tarray = new double[tid + 1][T.length + 2];
         for(int i = 0; i < T.length; i++){
-            T[i] = Konstanter.KONSTANT_TEMPERATUR_BAKSIDA;
+            T[i] = Constants.CONSTANT_TEMPERATURE_UNEXPOSED;
         }
-    //Initiering: bygg matriserna C^-1, K och vektorerna Q och T
-    //material består av matriser med varje skikts materialsammansättning
+
+        //Initialization: build the matrices C^1, K and the arrays Q and T
+        //material consists of matrices with the material composition of each layer
 
         double[][] K;
-        double Tf;
-        double Tbaksida;
-        int cnt = 0;
-
-        for(int i = 0; i < tid * Konstanter.TIDSSTEG_PER_SEKUND + 1; i++){
-            Tf = fire.getTf(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
-            Tbaksida = fire.getTbaksida(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
-            if((i % Konstanter.TIDSSTEG_PER_SEKUND) == 0){
-                Tarray[cnt][0] = cnt;
-                Tarray[cnt][1] = Tf;
-                if (Tarray[0].length - 2 >= 0) System.arraycopy(T, 0, Tarray[cnt], 2, Tarray[0].length - 2);
-                cnt++;
-            }
-
-    //Steg 1: beräkna T[j+1] = C[j]^-1 * (Q[j] - K[j]T[j]) * deltaT + T[j]
-
-            fc.Cp(material, T);
-            C = fc.getC();
-            Cinv = m.CtoInvers(C);
-            K = fc.K(material, T);
-            Q = fc.getQ(T, Tf, Tbaksida, adiabatisk, fc.getLuftspalt());
-
-            double[] A = m.matrisXarray(Cinv, Q);
-            double[][] A2 = m.matrisXmatris(Cinv, K);
-            double[] B = m.matrisXarray(A2, T);
-            double[] D = m.arraySubtraktion(A, B);
-            double[] E = m.arrayXconstant(D, (1.0 / Konstanter.TIDSSTEG_PER_SEKUND));
-
-            T = m.arrayAddition(E, T);
-       }
-
-    //Steg 2: uppdatera C^-1, Q, K
-    //C är den matris där elementens energiinnehåll specificeras
-    //Q är en vektor där randvillkoren specificeras...
-    //K är den matris där värmeledningen specificeras
-
-    //Steg 3: upprepa proceduren tills sluttiden
-
-    }
-
-    public void femSplit(int tid, ArrayList<ArrayList<double[][]>> materialSplit, boolean adiabatisk)throws IOException{
-
-        Matris m = new Matris();
-        fc.globalMatris(materialSplit);
-
-        double[] Tsplit = new double[fc.getGlobalMatrisM()];
-        double[] Q;
-        Tarray = new double[tid + 1][Tsplit.length + 2];
-
-        for(int i = 0; i < Tsplit.length; i++){
-            Tsplit[i] = Konstanter.KONSTANT_TEMPERATUR_BAKSIDA;
-        }
-        //Initiering: bygg matriserna C^-1, K och vektorerna Q och T
-        //material består av matriser med varje skikts materialsammansättning
-        double[][] K;
-        double Tf;
-        double Tbaksida;
+        double Texposed;
+        double Tunexposed;
         int cnt = 0;
         int c = 1;
         System.out.print("Progression of the calculation: ");
 
-        for(int i = 0; i < tid * Konstanter.TIDSSTEG_PER_SEKUND + 1; i++){
-            if(i >= tid * Konstanter.TIDSSTEG_PER_SEKUND / 10 * c){
+        for(int i = 0; i < tid * Constants.TIME_STEPS_PER_SECOND + 1; i++){
+            if(i >= tid * Constants.TIME_STEPS_PER_SECOND / 10 * c){
                 System.out.print("%");
                 c++;
             }
-            Tf = fire.getTf(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
-            Tbaksida = fire.getTbaksida(i * 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
-            if((i % Konstanter.TIDSSTEG_PER_SEKUND) == 0){
+            Texposed = fire.getTexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
+            Tunexposed = fire.getTunexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
+            if((i % Constants.TIME_STEPS_PER_SECOND) == 0){
                 Tarray[cnt][0] = cnt;
-                Tarray[cnt][1] = Tf;
+                Tarray[cnt][1] = Texposed;
+                if (Tarray[0].length - 2 >= 0) System.arraycopy(T, 0, Tarray[cnt], 2, Tarray[0].length - 2);
+                cnt++;
+            }
+
+            //Step 1: calculate T[j+1] = C[j]^-1 * (Q[j] - K[j]T[j]) * deltaT + T[j]
+
+            //Step 2: update C^1, Q and K
+            //C is the matrix where energy content is specified
+            //Q is an array where the boundary conditions are specified
+            //K is the matrix where conduction is specified
+
+            //Step 3: repeat until final time is reached
+
+            fc.Cp(material, T);
+            C = fc.getC();
+            Cinv = m.CInverted(C);
+            K = fc.K(material, T);
+            Q = fc.getQ(T, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
+
+            double[] A = m.matrisXarray(Cinv, Q);
+            double[][] A2 = m.matrisXmatris(Cinv, K);
+            double[] B = m.matrisXarray(A2, T);
+            double[] D = m.arraySubtraction(A, B);
+            double[] E = m.arrayXconstant(D, (1.0 / Constants.TIME_STEPS_PER_SECOND));
+
+            T = m.arrayAddition(E, T);
+       }
+       System.out.println();
+    }
+
+    public void femSplit(int tid, ArrayList<ArrayList<double[][]>> materialSplit, boolean adiabatic)throws IOException{
+
+        Matrix m = new Matrix();
+        fc.globalMatris(materialSplit);
+
+        double[] Tsplit = new double[fc.getGlobalMatrixM()];
+        double[] Q;
+        Tarray = new double[tid + 1][Tsplit.length + 2];
+
+        for(int i = 0; i < Tsplit.length; i++){
+            Tsplit[i] = Constants.CONSTANT_TEMPERATURE_UNEXPOSED;
+        }
+
+        //Initialization: build the matrices C^1, K and the arrays Q and T
+        //material consists of matrices with the material composition of each layer
+
+        double[][] K;
+        double Texposed;
+        double Tunexposed;
+        int cnt = 0;
+        int c = 1;
+        System.out.print("Progression of the calculation: ");
+
+        for(int i = 0; i < tid * Constants.TIME_STEPS_PER_SECOND + 1; i++){
+            if(i >= tid * Constants.TIME_STEPS_PER_SECOND / 10 * c){
+                System.out.print("%");
+                c++;
+            }
+            Texposed = fire.getTexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
+            Tunexposed = fire.getTunexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
+            if((i % Constants.TIME_STEPS_PER_SECOND) == 0){
+                Tarray[cnt][0] = cnt;
+                Tarray[cnt][1] = Texposed;
                 if (Tarray[0].length - 2 >= 0) System.arraycopy(Tsplit, 0, Tarray[cnt], 2, Tarray[0].length - 2);
                 cnt++;
             }
 
-            //Steg 1: beräkna T[j+1] = C[j]^-1 * (Q[j] - K[j]T[j]) * deltaT + T[j]
-            C = fc.CpSplit(materialSplit, Tsplit, fc.getGlobalMatrisM());
-            Cinv = m.CtoInvers(C);
-            K = fc.KSplit(materialSplit, Tsplit, fc.getGlobalMatrisM());
-            Q = fc.getQ(Tsplit, Tf, Tbaksida, adiabatisk, fc.getLuftspalt());
+            //Step 1: calculate T[j+1] = C[j]^-1 * (Q[j] - K[j]T[j]) * deltaT + T[j]
+
+            //Step 2: update C^1, Q and K
+            //C is the matrix where energy content is specified
+            //Q is an array where the boundary conditions are specified
+            //K is the matrix where conduction is specified
+
+            //Step 3: repeat until final time is reached
+
+            C = fc.CpSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            Cinv = m.CInverted(C);
+            K = fc.KSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            Q = fc.getQ(Tsplit, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
 
             double[] A = m.matrisXarray(Cinv, Q);
             double[][] A2 = m.matrisXmatris(Cinv, K);
             double[] B = m.matrisXarray(A2, Tsplit);
-            double[] D = m.arraySubtraktion(A, B);
-            double[] E = m.arrayXconstant(D, 1.0 / Konstanter.TIDSSTEG_PER_SEKUND);
+            double[] D = m.arraySubtraction(A, B);
+            double[] E = m.arrayXconstant(D, 1.0 / Constants.TIME_STEPS_PER_SECOND);
             Tsplit = m.arrayAddition(E, Tsplit);
         }
-
-        //Steg 2: uppdatera C^-1, Q, K
-        //C är den matris där elementens energiinnehåll specificeras
-        //Q är en vektor där randvillkoren specificeras...
-        //K är den matris där värmeledningen specificeras
-
-        //Steg 3: upprepa proceduren tills sluttiden
         System.out.println();
     }
 }

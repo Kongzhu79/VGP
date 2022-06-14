@@ -14,8 +14,8 @@ public class Material {
 
     ArrayList<double[][]> layerList;
     ArrayList<ArrayList<double[][]>> layerListSplit;
-    int[] skiktCount;
-    double[] skiktTjocklek;
+    int[] layerCount;
+    double[] layerThickness;
 
     public ArrayList<double[][]> getLayerList(){
         return layerList;
@@ -23,36 +23,35 @@ public class Material {
     public ArrayList<ArrayList<double[][]>> getLayerListSplit(){
         return layerListSplit;
     }
-    public int[] getSkiktCount(){
-        return skiktCount;
+    public int[] getLayerCount(){
+        return layerCount;
     }
-    public double[] getSkiktTjocklek(){
-        return skiktTjocklek;
+    public double[] getLayerThickness(){
+        return layerThickness;
     }
     public void material(ArrayList<String[]> materialList, boolean splitModel){
 
         MaterialData md = new MaterialData();
         double[][] matl;
         int cnt = 1;
-        skiktCount = new int[materialList.size() + 2];
-        skiktCount[0] = 0;
-        skiktCount[1] = 1;
+        layerCount = new int[materialList.size() + 2];
+        layerCount[0] = 0;
+        layerCount[1] = 1;
         layerListSplit = new ArrayList<>();
-        skiktTjocklek = new double[materialList.size()];
+        layerList = new ArrayList<>();
+        layerThickness = new double[materialList.size()];
 
         for(int i = 0; i < materialList.size(); i++){
             String[] materialString = materialList.get(i);
 
-            String materialNamn = materialString[1];
-
             ArrayList<double[][]> layerListTemp = new ArrayList<>();
 
+            int mtlnr = this.materialNumber(materialString[1]);
             double x = Double.parseDouble(materialString[0]) / 1000;
-            skiktTjocklek[i] = x;
-            int mtlnr = this.materialNumber(materialNamn);
+            layerThickness[i] = x;
 
             if(splitModel){
-                if(mtlnr == 0 || mtlnr == 1 || mtlnr == 2 || mtlnr == 6 || mtlnr == 7){
+                if(mtlnr == 0 || mtlnr == 1 || mtlnr == 2 || mtlnr == 6 || mtlnr == 7 || mtlnr == 48){
                     matl = md.md(x, mtlnr);
                     layerListTemp.add(matl);
                     cnt++;
@@ -62,9 +61,9 @@ public class Material {
                     double x1 = 1000 * x;
                     int x2 = (int) x1;
 
-                    if(x > Konstanter.ANTAL_MM_PER_SKIKT / 1000){
-                        y = x2 / Konstanter.ANTAL_MM_PER_SKIKT;
-                        if(0 < x % (1.0 * Konstanter.ANTAL_MM_PER_SKIKT / 1000)){
+                    if(x > Constants.NUMBER_OF_MM_PER_LAYER / 1000){
+                        y = x2 / Constants.NUMBER_OF_MM_PER_LAYER;
+                        if(0 < x % (1.0 * Constants.NUMBER_OF_MM_PER_LAYER / 1000)){
                             y++;
                         }
                         x = x / y;
@@ -77,14 +76,18 @@ public class Material {
                     }
                 }
                 layerListSplit.add(layerListTemp);
-                skiktCount[i + 2] = cnt;
+                layerCount[i + 2] = cnt;
+            }
+            else{
+                matl = md.md(x, mtlnr);
+                layerList.add(matl);
             }
         }
     }
     public int materialNumber(String materialNamn){
         int i = -1;
 
-        if(materialNamn.equalsIgnoreCase("luftspalt")){
+        if(materialNamn.equalsIgnoreCase("voidLayer")){
             i = 0;
         }
         else if(materialNamn.equalsIgnoreCase("GN") || materialNamn.equalsIgnoreCase("normalgips")){

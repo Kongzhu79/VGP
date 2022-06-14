@@ -258,7 +258,7 @@ public class MaterialData {
 //De här materialdata är de som används som standard för normalgips
 
 //Justering av gipsvärden för att stämma bättre med VGP.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
 
         //Temperaturer
@@ -319,7 +319,7 @@ public class MaterialData {
 //Anpassade data för att stämma med Gyprocs robustskiva
 
 //Justering av gipsvärden för att stämma bättre med VGP.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
 
         //Temperaturer
@@ -379,7 +379,7 @@ public class MaterialData {
         double[][] temp = new double [13][6];
 
 //Justering av specifikt värme för att ge snabbare uppvärmning initialt.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 2435 till 12000 så att fuktavgången stämmer bättre.
 
         //Temperaturer
@@ -501,7 +501,7 @@ public class MaterialData {
         double[][] temp = new double [14][6];
 
 //Justering av gipsvärden för att stämma bättre med VGP.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
 
         //Temperaturer
@@ -561,7 +561,7 @@ public class MaterialData {
         double[][] temp = new double [14][6];
 
 //Justering av gipsvärden för att stämma bättre med VGP.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
 
         //Temperaturer
@@ -2346,7 +2346,7 @@ public class MaterialData {
         double[][] temp = new double [13][6];
 
 //Justering av gipsvärden för att stämma bättre med VGP.
-//Jämförande kontroll av temperaturer gjorda för gipsväggar med luftspalt och olika isolering.
+//Jämförande kontroll av temperaturer gjorda för gipsväggar med voidLayer och olika isolering.
 //Justeringen mot GN består enbart i att temp[0][2] är höjt från 1500 till 12000 så att funktavgången stämmer bättre.
 
         //Temperaturer

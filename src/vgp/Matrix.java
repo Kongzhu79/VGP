@@ -9,9 +9,9 @@ package vgp;
  *
  * @author jsm
  */
-public class Matris {
+public class Matrix {
 
-    public double[] matrisXarray(double[][] matris, double[] array){ //matrisen är uppbyggd med kolumn x rad
+    public double[] matrisXarray(double[][] matris, double[] array){ //The matrix is defined as column x row
         double[] arrayNew = new double[array.length];
 
         for(int i = 0; i < array.length; i++){
@@ -24,7 +24,7 @@ public class Matris {
         }
         return arrayNew;
     }
-    public double[][] CtoInvers(double[][] matris){ //kolumn x rad
+    public double[][] CInverted(double[][] matris){ //Column x row
         int a = matris.length;
         int b = matris[0].length;
 
@@ -53,7 +53,7 @@ public class Matris {
         }
         return array;
     }
-    public double[] arraySubtraktion(double[] array1, double[] array2){
+    public double[] arraySubtraction(double[] array1, double[] array2){
 
         double[] arrayNew = new double[array1.length];
 
@@ -63,6 +63,7 @@ public class Matris {
         return arrayNew;
     }
     public double[][] matrisXmatris(double[][] matris1, double[][] matris2){
+
         double[][] matrisNew = new double[matris1.length][matris1[0].length];
 
         for(int i = 0; i < matrisNew.length; i++){

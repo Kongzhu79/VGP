@@ -9,69 +9,69 @@ import java.util.*;
 public class FemCalc {
 
     double[][] C;
-    int[] luftspalt;
-    int globalMatrisM;
-    int antalMaterial;
+    int[] voidLayer;
+    int globalMatrixM;
+    int numberMatrials;
     public double[][] getC(){
         return C;
     }
-    public int[] getLuftspalt(){
-        return luftspalt;
+    public int[] getVoidLayer(){
+        return voidLayer;
     }
-    public int getGlobalMatrisM(){
-        return globalMatrisM;
+    public int getGlobalMatrixM(){
+        return globalMatrixM;
     }
-    public double getK(double[][] skiktMaterial, double[] T, int elementNummer){
-        double k = skiktMaterial[0][1];
-        double a = skiktMaterial.length;
-        double elementTemperatur = (T[elementNummer] + T[elementNummer + 1]) / 2;
+    public double getK(double[][] layerMaterial, double[] T, int elementNumber){
+        double k = layerMaterial[0][1];
+        double a = layerMaterial.length;
+        double elementTemperature = (T[elementNumber] + T[elementNumber + 1]) / 2;
         for(int i = 1; i < a; i++){
-            if(elementTemperatur < skiktMaterial[i][0]){
-                double temperaturOverSenasteIndatasteget = elementTemperatur - skiktMaterial[i - 1][0];
-                double skillnadKMellanIndatasteg = skiktMaterial[i][1] - skiktMaterial[i - 1][1];
-                double skillnadTemperaturMellanIndatasteg = skiktMaterial[i][0] - skiktMaterial[i - 1][0];
-                double kPerTemperaturstegMellanIndatasteg = skillnadKMellanIndatasteg / skillnadTemperaturMellanIndatasteg;
+            if(elementTemperature < layerMaterial[i][0]){
+                double temperatureOverLastInput = elementTemperature - layerMaterial[i - 1][0];
+                double differenceInput = layerMaterial[i][1] - layerMaterial[i - 1][1];
+                double differenceTemperature = layerMaterial[i][0] - layerMaterial[i - 1][0];
+                double kPerTemperatureIncrement = differenceInput / differenceTemperature;
 
-                k = skiktMaterial[i - 1][1] + temperaturOverSenasteIndatasteget * kPerTemperaturstegMellanIndatasteg;
+                k = layerMaterial[i - 1][1] + temperatureOverLastInput * kPerTemperatureIncrement;
                 break;
             }
         }
         return k;
     }
-    public double getC(double[][] skiktMaterial, double[] T, int elementNummer){
-        double c = skiktMaterial[0][2];
-        double a = skiktMaterial.length;
-        double elementTemperatur = (T[elementNummer] + T[elementNummer + 1]) / 2;
+    public double getC(double[][] layerMaterial, double[] T, int elementNumber){
+        double c = layerMaterial[0][2];
+        double a = layerMaterial.length;
+        double elementTemperature = (T[elementNumber] + T[elementNumber + 1]) / 2;
         for(int i = 1; i < a; i++){
-            if(elementTemperatur < skiktMaterial[i][0]){
-                double temperaturOverSenasteIndatasteget = elementTemperatur - skiktMaterial[i - 1][0];
-                double skillnadKMellanIndatasteg = skiktMaterial[i][2] - skiktMaterial[i - 1][2];
-                double skillnadTemperaturMellanIndatasteg = skiktMaterial[i][0] - skiktMaterial[i - 1][0];
-                double kPerTemperaturstegMellanIndatasteg = skillnadKMellanIndatasteg / skillnadTemperaturMellanIndatasteg;
+            if(elementTemperature < layerMaterial[i][0]){
+                double temperatureOverLastInput = elementTemperature - layerMaterial[i - 1][0];
+                double differenceInput = layerMaterial[i][2] - layerMaterial[i - 1][2];
+                double differenceTemperature = layerMaterial[i][0] - layerMaterial[i - 1][0];
+                double kPerTemperatureIncrement = differenceInput / differenceTemperature;
 
-                c = skiktMaterial[i - 1][2] + temperaturOverSenasteIndatasteget * kPerTemperaturstegMellanIndatasteg;
+                c = layerMaterial[i - 1][2] + temperatureOverLastInput * kPerTemperatureIncrement;
                 break;
             }
         }
         return c;
     }
-    public double getRho(double[][] skiktData){
-        return skiktData[0][3];
+    public double getRho(double[][] layerData){
+        return layerData[0][3];
     }
-    public double getFukt(double[][] skiktData){
-        return skiktData[0][4];
+    public double getMoist(double[][] layerData){
+        return layerData[0][4];
     }
-    public double getX(double[][] skiktData){
-        return skiktData[0][5];
+    public double getX(double[][] layerData){
+        return layerData[0][5];
     }
-    public double[] getQ(double[] T, double Tf, double Tbaksida, boolean adiabatisk, int[] luftspalt){
-        double Qin = Konstanter.EPSILON * Konstanter.SIGMA * (Math.pow(Tf + 273.15, 4) - Math.pow(T[0] + 273.15, 4)) + Konstanter.H_BRAND * (Tf - T[0]);
+    public double[] getQ(double[] T, double Texposed, double Tunexposed, boolean adiabatic, int[] voidL){
+        double Qin = Constants.EPSILON * Constants.SIGMA * (Math.pow(Texposed + 273.15, 4) - Math.pow(T[0] + 273.15, 4)) + Constants.H_EXPOSED * (Texposed - T[0]);
         double Qut;
-        if(adiabatisk){
+        if(adiabatic){
             Qut = 0;
         }
         else{
-            Qut = - (Konstanter.EPSILON * Konstanter.SIGMA * (Math.pow(T[T.length - 1] + 273.15, 4) - Math.pow(Tbaksida + 273.15, 4)) + Konstanter.H_KALL * (T[T.length - 1] - Tbaksida));
+            Qut = - (Constants.EPSILON * Constants.SIGMA * (Math.pow(T[T.length - 1] + 273.15, 4) - Math.pow(Tunexposed + 273.15, 4)) + Constants.H_UNEXPOSED * (T[T.length - 1] - Tunexposed));
         }
 
         double[] Q = new double[T.length];
@@ -81,10 +81,10 @@ public class FemCalc {
         Q[0] = Qin;
         Q[T.length - 1] = Qut;
 
-        for(int i = 0; i < luftspalt.length; i++){
-            if(luftspalt[i] != 0){
-                Q[i] = Konstanter.EPSILON * Konstanter.SIGMA * (Math.pow(T[i + 1] + 273.15, 4) - Math.pow(T[i] + 273.15, 4)) + Konstanter.H_VOID * ((T[i + 1] + T[i]) / 2 - T[i]);
-                Q[i + 1] = Konstanter.EPSILON * Konstanter.SIGMA * (Math.pow(T[i] + 273.15, 4) - Math.pow(T[i + 1] + 273.15, 4)) + Konstanter.H_VOID * ((T[i + 1] + T[i]) / 2 - T[i + 1]);
+        for(int i = 0; i < voidL.length; i++){
+            if(voidL[i] != 0){
+                Q[i] = Constants.EPSILON * Constants.SIGMA * (Math.pow(T[i + 1] + 273.15, 4) - Math.pow(T[i] + 273.15, 4)) + Constants.H_VOID * ((T[i + 1] + T[i]) / 2 - T[i]);
+                Q[i + 1] = Constants.EPSILON * Constants.SIGMA * (Math.pow(T[i] + 273.15, 4) - Math.pow(T[i + 1] + 273.15, 4)) + Constants.H_VOID * ((T[i + 1] + T[i]) / 2 - T[i + 1]);
             }
         }
         return Q;
@@ -97,40 +97,40 @@ public class FemCalc {
             b = b + c.size();
             i++;
         }
-        globalMatrisM = b + 1;
-        antalMaterial = i + 1;
+        globalMatrixM = b + 1;
+        numberMatrials = i + 1;
     }
     public void Cp(ArrayList<double[][]> material, double[] T){
         FemCalc fc = new FemCalc();
         int a = material.size();
         C = new double[a + 1][a + 1];
-        luftspalt = new int[a + 1];
-        double[][] skiktData;
+        voidLayer = new int[a + 1];
+        double[][] layerData;
 
         for(int i = 0; i < a; i++){
-            skiktData = material.get(i);
-            if(skiktData[0][4] != 0){
+            layerData = material.get(i);
+            if(layerData[0][4] != 0){
                 double Cnew;
                 if(T[i] > 105){
-                    skiktData[0][4] = 0;
-                    Cnew = fc.getC(skiktData, T ,i);
+                    layerData[0][4] = 0;
+                    Cnew = fc.getC(layerData, T ,i);
                 }
                 else if(T[i] > 100){
-                    Cnew = fc.getC(skiktData, T ,i) * fc.getRho(skiktData) * fc.getX(skiktData) + fc.getFukt(skiktData) / 100 * fc.getRho(skiktData) * fc.getX(skiktData);
+                    Cnew = fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) + fc.getMoist(layerData) / 100 * fc.getRho(layerData) * fc.getX(layerData);
                 }
                 else{
-                    Cnew = fc.getC(skiktData, T ,i);
+                    Cnew = fc.getC(layerData, T ,i);
                 }
 
                 C[i][i] = C[i][i] + Cnew / 2;
-                C[i + 1][i + 1] = Cnew * fc.getRho(skiktData) * fc.getX(skiktData) / 2;
+                C[i + 1][i + 1] = Cnew * fc.getRho(layerData) * fc.getX(layerData) / 2;
             }
             else{
-                if(skiktData[0][1] == 0){
-                    luftspalt[i] = 1;
+                if(layerData[0][1] == 0){
+                    voidLayer[i] = 1;
                 }
-                C[i][i] = C[i][i] + 1.0 * fc.getC(skiktData, T ,i) * fc.getRho(skiktData) * fc.getX(skiktData) / 2;
-                C[i + 1][i + 1] = 1.0 * fc.getC(skiktData, T ,i) * fc.getRho(skiktData) * fc.getX(skiktData) / 2;
+                C[i][i] = C[i][i] + 1.0 * fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) / 2;
+                C[i + 1][i + 1] = 1.0 * fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) / 2;
             }
         }
     }
@@ -138,20 +138,20 @@ public class FemCalc {
         FemCalc fc = new FemCalc();
         int a = material.size() + 1;
         double[][] K = new double[a][a];
-        double[][] skiktData;
+        double[][] layerData;
         for(int i = 0; i < a - 1; i++){
-            skiktData = material.get(i);
-            if(fc.getK(skiktData, T, i) == 0.0){
+            layerData = material.get(i);
+            if(fc.getK(layerData, T, i) == 0.0){
                 K[i][i] = K[i][i] + 0.0;
                 K[i + 1][i] = 0.0;
                 K[i][i + 1] = 0.0;
                 K[i + 1][i + 1] = 0.0;
             }
             else{
-                K[i][i] = K[i][i] + fc.getK(skiktData, T, i) / fc.getX(skiktData);
-                K[i + 1][i] = - 1.0 * fc.getK(skiktData, T, i) / fc.getX(skiktData);
-                K[i][i + 1] = - 1.0 * fc.getK(skiktData, T, i) / fc.getX(skiktData);
-                K[i + 1][i + 1] = fc.getK(skiktData, T, i) / fc.getX(skiktData);
+                K[i][i] = K[i][i] + fc.getK(layerData, T, i) / fc.getX(layerData);
+                K[i + 1][i] = - 1.0 * fc.getK(layerData, T, i) / fc.getX(layerData);
+                K[i][i + 1] = - 1.0 * fc.getK(layerData, T, i) / fc.getX(layerData);
+                K[i + 1][i + 1] = fc.getK(layerData, T, i) / fc.getX(layerData);
             }
         }
         return K;
@@ -159,15 +159,15 @@ public class FemCalc {
     public double[][] CpSplit(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
         FemCalc fc = new FemCalc();
         int cnt = 0;
-        luftspalt = new int[globalM];
+        voidLayer = new int[globalM];
         double[][] CSplit = new double[globalM][globalM];
         for(ArrayList<double[][]> materialTemp : materialSplit){
-            for(double[][] skiktData : materialTemp){
-                if(skiktData[0][1] == 0){
-                    luftspalt[cnt] = 1;
+            for(double[][] layerData : materialTemp){
+                if(layerData[0][1] == 0){
+                    voidLayer[cnt] = 1;
                 }
-                CSplit[cnt][cnt] = CSplit[cnt][cnt] + 1.0 * fc.getC(skiktData, T ,cnt) * fc.getRho(skiktData) * fc.getX(skiktData) / 2;
-                CSplit[cnt + 1][cnt + 1] = 1.0 * fc.getC(skiktData, T ,cnt) * fc.getRho(skiktData) * fc.getX(skiktData) / 2;
+                CSplit[cnt][cnt] = CSplit[cnt][cnt] + 1.0 * fc.getC(layerData, T ,cnt) * fc.getRho(layerData) * fc.getX(layerData) / 2;
+                CSplit[cnt + 1][cnt + 1] = 1.0 * fc.getC(layerData, T ,cnt) * fc.getRho(layerData) * fc.getX(layerData) / 2;
                 cnt++;
             }
         }
@@ -181,18 +181,18 @@ public class FemCalc {
         double[][] K = new double[globalM][globalM];
         for(int i = 0; i < a; i++){
             materialTemp = materialSplit.get(i);
-            for(double[][] skiktData : materialTemp){
-                if(fc.getK(skiktData, T, i) == 0.0){
+            for(double[][] layerData : materialTemp){
+                if(fc.getK(layerData, T, i) == 0.0){
                     K[cnt][cnt] = K[cnt][cnt] + 0.0;
                     K[cnt + 1][cnt] = 0.0;
                     K[cnt][cnt + 1] = 0.0;
                     K[cnt + 1][cnt + 1] = 0.0;
                 }
                 else{
-                    K[cnt][cnt] = K[cnt][cnt] + fc.getK(skiktData, T, cnt) / fc.getX(skiktData);
-                    K[cnt + 1][cnt] = - 1.0 * fc.getK(skiktData, T, cnt) / fc.getX(skiktData);
-                    K[cnt][cnt + 1] = - 1.0 * fc.getK(skiktData, T, cnt) / fc.getX(skiktData);
-                    K[cnt + 1][cnt + 1] = fc.getK(skiktData, T, cnt) / fc.getX(skiktData);
+                    K[cnt][cnt] = K[cnt][cnt] + fc.getK(layerData, T, cnt) / fc.getX(layerData);
+                    K[cnt + 1][cnt] = - 1.0 * fc.getK(layerData, T, cnt) / fc.getX(layerData);
+                    K[cnt][cnt + 1] = - 1.0 * fc.getK(layerData, T, cnt) / fc.getX(layerData);
+                    K[cnt + 1][cnt + 1] = fc.getK(layerData, T, cnt) / fc.getX(layerData);
                 }
                 cnt++;
             }

@@ -10,10 +10,12 @@
       <change beforePath="$PROJECT_DIR$/src/vgp/FEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FEM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FemCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FemCalc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/Konstanter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Konstanter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Konstanter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/MaterialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/MaterialData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/Matris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Matris.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Matris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,15 +26,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/vgp/Constants.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/FEM.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/FemCalc.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Fire.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/IO.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Konstanter.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Material.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/MaterialData.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Matris.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/vgp/Matrix.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,6 +81,17 @@
       <updated>1654026224284</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/VGP$Main.ic" NAME="Main Coverage Results" MODIFIED="1654680546149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
