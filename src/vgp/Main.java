@@ -48,13 +48,6 @@ public class Main {
             io.SystemOut(fem.getTarray());
         }
 
-//Explicit solver, Specific heat, each layer is divided into multiple elements - external database
-        else if(Constants.MODEL == 4){
-            System.out.println("Model 4");
-            matl.materialFind(io.inputList, true);
-            fem.femSplit(io.getTime(), matl.getLayerListSplit(), cons.getAdiabatisk());
-            io.SystemOutSplit(matl.getLayerThickness(), fem.getTarray(), matl.getLayerCount());
-        }
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);
     }

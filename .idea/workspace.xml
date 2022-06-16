@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/MaterialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/MaterialData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/MaterialData.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +27,6 @@
     <setting file="file://$PROJECT_DIR$/src/vgp/IO.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Material.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/MaterialData.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/vgp/Matrix.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
