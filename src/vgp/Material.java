@@ -59,7 +59,7 @@ public class Material {
                     double x1 = 1000 * x;
                     int x2 = (int) x1;
 
-                    if(x > Constants.NUMBER_OF_MM_PER_LAYER / 1000.0){
+                    if(x > Constants.NUMBER_OF_MM_PER_LAYER / 1000){
                         y = x2 / Constants.NUMBER_OF_MM_PER_LAYER;
                         if(0 < x % (Constants.NUMBER_OF_MM_PER_LAYER / 1000.0)){
                             y++;

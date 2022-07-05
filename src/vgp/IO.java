@@ -76,6 +76,7 @@ public class IO {
             configListTemp.add(stringArray);
             a = br.readLine();
         }
+        br.close();
         return configListTemp;
     }
 
@@ -212,7 +213,6 @@ public class IO {
         }
         double[][] materialMatrix = new double[materialArray.size()][6];
         for(int i = 0 ; i < materialArray.size(); i++){
-//            double[] material = new double[]
             for(int j = 0; j < materialArray.get(i).length - 1; j++){
                 materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j]));
             }

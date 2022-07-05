@@ -20,7 +20,6 @@ public class Constants {
  * 3 = Enthalpy, each layer is divided into multiple elements
  */
 
-    public static int NUMBER_OF_LAYERS_PER_MM;
     public static int NUMBER_OF_MM_PER_LAYER;
     public static int TIME_STEPS_PER_SECOND;
     public static int SECONDS_BETWEEN_PRINT_OUT;
@@ -70,59 +69,56 @@ public class Constants {
 
     public void setConstants(ArrayList<String[]> configList){
         
-        String[] nameListArray = new String[17];
-        double[] constListArray = new double[17];
+        String[] nameListArray = new String[16];
+        double[] constListArray = new double[16];
 
         nameListArray[0] = "MODEL";
         constListArray[0] = 2;
 
-        nameListArray[1] = "NUMBER_OF_LAYERS_PER_MM";
-        constListArray[1] = 1.;
+        nameListArray[1] = "NUMBER_OF_MM_PER_LAYER";
+        constListArray[1] = 5.;
 
-        nameListArray[2] = "NUMBER_OF_MM_PER_LAYER";
-        constListArray[2] = 5.;
+        nameListArray[2] = "TIME_STEPS_PER_SECOND";
+        constListArray[2] = 20.;
 
-        nameListArray[3] = "TIME_STEPS_PER_SECOND";
-        constListArray[3] = 20.;
+        nameListArray[3] = "SECONDS_BETWEEN_PRINT_OUT";
+        constListArray[3] = 300.;
 
-        nameListArray[4] = "SECONDS_BETWEEN_PRINT_OUT";
-        constListArray[4] = 300.;
+        nameListArray[4] = "FIRE_CURVE_EXPOSED";
+        constListArray[4] = 2;
 
-        nameListArray[5] = "FIRE_CURVE_EXPOSED";
-        constListArray[5] = 2;
+        nameListArray[5] = "FIRE_CURVE_UNEXPOSED";
+        constListArray[5] = 1;
 
-        nameListArray[6] = "FIRE_CURVE_UNEXPOSED";
-        constListArray[6] = 1;
+        nameListArray[6] = "EPSILON";
+        constListArray[6] = 0.8;
 
-        nameListArray[7] = "EPSILON";
-        constListArray[7] = 0.8;
+        nameListArray[7] = "SIGMA";
+        constListArray[7] = 5.67E-8;
 
-        nameListArray[8] = "SIGMA";
-        constListArray[8] = 5.67E-8;
+        nameListArray[8] = "H_EXPOSED";
+        constListArray[8] = 25;
 
-        nameListArray[9] = "H_EXPOSED";
-        constListArray[9] = 25;
+        nameListArray[9] = "H_UNEXPOSED";
+        constListArray[9] = 4;
 
-        nameListArray[10] = "H_UNEXPOSED";
+        nameListArray[10] = "H_VOID";
         constListArray[10] = 4;
 
-        nameListArray[11] = "H_VOID";
-        constListArray[11] = 4;
+        nameListArray[11] = "CONSTANT_TEMPERATURE_EXPOSED";
+        constListArray[11] = 20;
 
-        nameListArray[12] = "CONSTANT_TEMPERATURE_EXPOSED";
+        nameListArray[12] = "CONSTANT_TEMPERATURE_UNEXPOSED";
         constListArray[12] = 20;
 
-        nameListArray[13] = "CONSTANT_TEMPERATURE_UNEXPOSED";
-        constListArray[13] = 20;
+        nameListArray[13] = "TIME_TO_MAX_TEMPERATURE";
+        constListArray[13] = 60;
 
-        nameListArray[14] = "TIME_TO_MAX_TEMPERATURE";
-        constListArray[14] = 60;
+        nameListArray[14] = "COOLING_RATE";
+        constListArray[14] = 10;
 
-        nameListArray[15] = "COOLING_RATE";
-        constListArray[15] = 10;
-
-        nameListArray[16] = "GAMMA";
-        constListArray[16] = 1;
+        nameListArray[15] = "GAMMA";
+        constListArray[15] = 1;
 
         for(String[] nameList : configList){
             for(int j = 0; j < nameListArray.length; j++){
@@ -133,22 +129,21 @@ public class Constants {
         }
 
         MODEL = (int) constListArray[0];
-        NUMBER_OF_LAYERS_PER_MM = (int) constListArray[1];
-        NUMBER_OF_MM_PER_LAYER = (int) constListArray[2];
-        TIME_STEPS_PER_SECOND = (int) constListArray[3];
-        SECONDS_BETWEEN_PRINT_OUT = (int) constListArray[4];
-        FIRE_CURVE_EXPOSED = (int) constListArray[5];
-        FIRE_CURVE_UNEXPOSED = (int) constListArray[6];
-        EPSILON = constListArray[7];
-        SIGMA = constListArray[8];
-        H_EXPOSED = constListArray[9];
-        H_UNEXPOSED = constListArray[10];
-        H_VOID = constListArray[11];
-        CONSTANT_TEMPERATURE_EXPOSED = (int) constListArray[12];
-        CONSTANT_TEMPERATURE_UNEXPOSED = (int) constListArray[13];
-        TIME_TO_MAX_TEMPERATURE = constListArray[14];
-        COOLING_RATE = constListArray[15];
-        GAMMA = constListArray[16];
+        NUMBER_OF_MM_PER_LAYER = (int) constListArray[1];
+        TIME_STEPS_PER_SECOND = (int) constListArray[2];
+        SECONDS_BETWEEN_PRINT_OUT = (int) constListArray[3];
+        FIRE_CURVE_EXPOSED = (int) constListArray[4];
+        FIRE_CURVE_UNEXPOSED = (int) constListArray[5];
+        EPSILON = constListArray[6];
+        SIGMA = constListArray[7];
+        H_EXPOSED = constListArray[8];
+        H_UNEXPOSED = constListArray[9];
+        H_VOID = constListArray[10];
+        CONSTANT_TEMPERATURE_EXPOSED = (int) constListArray[11];
+        CONSTANT_TEMPERATURE_UNEXPOSED = (int) constListArray[12];
+        TIME_TO_MAX_TEMPERATURE = constListArray[13];
+        COOLING_RATE = constListArray[14];
+        GAMMA = constListArray[15];
     }
     
     public boolean getAdiabatisk(){
