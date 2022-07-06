@@ -30,6 +30,7 @@ Saker som ska fixas:
 3. ~~Strukturera och kommentera koden så att den blir begriplig för eftervärlden - pågående (på engelska?)~~
 4. ~~Rensa bort överflödig kod - pågående~~
 5. ~~Flytta ut materialdatabasen~~
+6. ~~Ge möjlighet att ha konstanta materialdata i avsvalningsfasen~~
 6. Skriv ny beräkningsrutin  som bygger på entalpi
 7. Inkorporera Jacobs arbete med bortfall
 8. Förbättra tidsstegsgeneratorn att motsvara TASEF?
