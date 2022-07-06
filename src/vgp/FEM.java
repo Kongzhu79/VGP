@@ -94,11 +94,15 @@ public class FEM {
         fc.globalMatris(materialSplit);
 
         double[] Tsplit = new double[fc.getGlobalMatrixM()];
+        double[] TsplitMax = new double[Tsplit.length];
         double[] Q;
         Tarray = new double[time + 1][Tsplit.length + 2];
 
         for(int i = 0; i < Tsplit.length; i++){
             Tsplit[i] = Constants.CONSTANT_TEMPERATURE_UNEXPOSED;
+        }
+        for (int i = 0; i < Tsplit.length; i++) {
+            TsplitMax[i] = Tsplit[i];
         }
 
         //Initialization: build the matrices C^1, K and the arrays Q and T
@@ -134,9 +138,9 @@ public class FEM {
 
             //Step 3: repeat until final time is reached
 
-            C = fc.CpSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            C = fc.CpSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Cinv = m.CInverted(C);
-            K = fc.KSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            K = fc.KSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Q = fc.getQ(Tsplit, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
 
             double[] A = m.matrisXarray(Cinv, Q);
@@ -145,27 +149,35 @@ public class FEM {
             double[] D = m.arraySubtraction(A, B);
             double[] E = m.arrayXconstant(D, 1.0 / Constants.TIME_STEPS_PER_SECOND);
             Tsplit = m.arrayAddition(E, Tsplit);
-            for(double[] Qs : C) {
-                for (double qsp : Qs) {
-                    System.out.print(df.format(qsp).replace(",", ".") + "\t");
+
+            for (int j = 0; j < Tsplit.length; j++) {
+                if (Constants.KC_MAX == 1.0){
+                    TsplitMax[j] = Math.max(TsplitMax[j], Tsplit[j]);
                 }
-                System.out.println();
+                else{
+                    TsplitMax[j] = Tsplit[j];
+                }
             }
-            System.out.println();
-        }
+//            System.out.println(TsplitMax[TsplitMax.length - 1] +  "\t" + Tsplit[Tsplit.length - 1]);
+       }
         System.out.println();
     }
     public void femSplit(int time, ArrayList<ArrayList<double[][]>> materialSplit, boolean adiabatic)throws IOException{
+        DecimalFormat df = new DecimalFormat("0.00000");
 
         Matrix m = new Matrix();
         fc.globalMatris(materialSplit);
 
         double[] Tsplit = new double[fc.getGlobalMatrixM()];
+        double[] TsplitMax = new double[Tsplit.length];
         double[] Q;
         Tarray = new double[time + 1][Tsplit.length + 2];
 
         for(int i = 0; i < Tsplit.length; i++){
             Tsplit[i] = Constants.CONSTANT_TEMPERATURE_UNEXPOSED;
+        }
+        for (int i = 0; i < Tsplit.length; i++) {
+            TsplitMax[i] = Tsplit[i];
         }
 
         //Initialization: build the matrices C^1, K and the arrays Q and T
@@ -201,9 +213,9 @@ public class FEM {
 
             //Step 3: repeat until final time is reached
 
-            C = fc.CpSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            C = fc.CpSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Cinv = m.CInverted(C);
-            K = fc.KSplit(materialSplit, Tsplit, fc.getGlobalMatrixM());
+            K = fc.KSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Q = fc.getQ(Tsplit, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
 
             double[] A = m.matrisXarray(Cinv, Q);
@@ -212,6 +224,15 @@ public class FEM {
             double[] D = m.arraySubtraction(A, B);
             double[] E = m.arrayXconstant(D, 1.0 / Constants.TIME_STEPS_PER_SECOND);
             Tsplit = m.arrayAddition(E, Tsplit);
+
+            for (int j = 0; j < Tsplit.length; j++) {
+                if (Constants.KC_MAX == 1.0){
+                    TsplitMax[j] = Math.max(TsplitMax[j], Tsplit[j]);
+                }
+                else{
+                    TsplitMax[j] = Tsplit[j];
+                }
+            }
         }
         System.out.println();
     }
