@@ -67,10 +67,13 @@ public class Constants {
     //For calculation using parametric fire curve.
     static double GAMMA;
 
+    //For constant material properties during cooling phase (0 = false, 1 = true)
+    static double KC_MAX;
+
     public void setConstants(ArrayList<String[]> configList){
         
-        String[] nameListArray = new String[16];
-        double[] constListArray = new double[16];
+        String[] nameListArray = new String[17];
+        double[] constListArray = new double[17];
 
         nameListArray[0] = "MODEL";
         constListArray[0] = 2;
@@ -120,6 +123,9 @@ public class Constants {
         nameListArray[15] = "GAMMA";
         constListArray[15] = 1;
 
+        nameListArray[16] = "KC_MAX";
+        constListArray[16] = 0;
+
         for(String[] nameList : configList){
             for(int j = 0; j < nameListArray.length; j++){
                 if(nameList[0].equalsIgnoreCase(nameListArray[j])){
@@ -144,6 +150,7 @@ public class Constants {
         TIME_TO_MAX_TEMPERATURE = constListArray[13];
         COOLING_RATE = constListArray[14];
         GAMMA = constListArray[15];
+        KC_MAX = constListArray[16];
     }
     
     public boolean getAdiabatisk(){
