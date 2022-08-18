@@ -49,9 +49,6 @@ public class IO {
         String a = br.readLine();
         String s = "";
 
-        if(a.split("\t").length < 2){
-            Arrays.fill(folderList, a);
-        }
         while (a != null){
             String[] fName = a.split(" ");
             if(fName[0].equalsIgnoreCase("CONFIG_PATH")){
