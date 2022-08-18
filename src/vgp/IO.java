@@ -5,6 +5,8 @@
 
 package vgp;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.io.*;
 import java.text.*;
@@ -15,7 +17,11 @@ import java.text.*;
  */
 public class IO {
 
-    String configFileName = "VGP_config";
+    String configFilePath;
+    String inputFilePath;
+    String outputFilePath;
+    String fireFilePath;
+    public static String materialFolderPath;
     ArrayList<String[]> inputList;
     ArrayList<String[]> configList;
     int time;
@@ -25,22 +31,54 @@ public class IO {
     }
     public void InputOutput()throws IOException{
 
-        String fileName = this.folderName() + "in";
-        configFileName = this.folderName() + configFileName;
+        configFilePath = this.folderName()[0];
+        inputFilePath = this.folderName()[1];
+        outputFilePath = this.folderName()[2];
+        materialFolderPath = this.folderName()[3];
+        fireFilePath = this.folderName()[4];
 
-        inputList = this.inputFileReader(fileName);
-        configList = this.configFileReader(configFileName);
+        inputList = this.inputFileReader(inputFilePath);
+        configList = this.configFileReader(configFilePath);
 
         time = this.getTime();
     }
-    public String folderName()throws IOException{
+    public String[] folderName()throws IOException{
 
         BufferedReader br = new BufferedReader(new FileReader("C:\\VGP\\VGP.txt"));
+        String[] folderList= new String[5];
+        String a = br.readLine();
+        String s = "";
 
-        String fName = br.readLine();
+        if(a.split("\t").length < 2){
+            Arrays.fill(folderList, a);
+        }
+        while (a != null){
+            String[] fName = a.split(" ");
+            if(fName[0].equalsIgnoreCase("CONFIG_PATH")){
+                s = a.substring(a.indexOf("'") + 1);
+                folderList[0] = s;
+            }
+            else if(fName[0].equalsIgnoreCase("INPUT_PATH")){
+                s = a.substring(a.indexOf("'") + 1);
+                folderList[1] = s;
+            }
+            else if(fName[0].equalsIgnoreCase("OUTPUT_PATH")){
+                s = a.substring(a.indexOf("'") + 1);
+                folderList[2] = s;
+            }
+            else if(fName[0].equalsIgnoreCase("MATERIAL_PATH")){
+                s = a.substring(a.indexOf("'") + 1);
+                folderList[3] = s;
+            }
+            else if(fName[0].equalsIgnoreCase("FIRE_PATH")){
+                s = a.substring(a.indexOf("'") + 1);
+                folderList[4] = s;
+            }
+            a = br.readLine();
+        }
         br.close();
 
-        return fName;
+        return folderList;
 
     }
     public ArrayList<String[]> inputFileReader(String fileName)throws IOException{
@@ -48,8 +86,8 @@ public class IO {
         String[] stringArray;
         ArrayList<String[]> stringList = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(fileName + ".txt"));
-        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.folderName() + "ut.txt")));
+        BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
+        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
 
         time = Integer.parseInt(br.readLine());
         String a = br.readLine();
@@ -68,7 +106,7 @@ public class IO {
         String[] stringArray;
         ArrayList<String[]> configListTemp = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(filNamn + ".txt"));
+        BufferedReader br = new BufferedReader(new FileReader(configFilePath));
 
         String a = br.readLine();
         while(a != null){
@@ -84,7 +122,7 @@ public class IO {
         String[] stringArray;
         ArrayList<String> fireTemperatureList = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(this.folderName() + "fire.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(fireFilePath));
 
         String a = br.readLine();
         while(a != null){
@@ -111,7 +149,7 @@ public class IO {
     public void SystemOut(double[][] Tarray)throws IOException{
         DecimalFormat df = new DecimalFormat("0.0");
         DecimalFormat dfTime = new DecimalFormat("0");
-        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.folderName() + "ut.txt")));
+        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
 
         System.out.println("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
         print.write("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
@@ -145,7 +183,7 @@ public class IO {
     public void SystemOutSplit(double[] layerThickness, double[][] Tarray, int[] splitCount)throws IOException{
 
         DecimalFormat df1 = new DecimalFormat("0.0");
-        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.folderName() + "ut.txt")));
+        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
 
         System.out.println("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
         print.write("Exponering på framsidan: " + Constants.FIRE_CURVE_EXPOSED);
@@ -203,7 +241,7 @@ public class IO {
 
     public double[][] materialReader(String materialName, double x) throws IOException {
 
-        BufferedReader br = new BufferedReader(new FileReader(this.folderName() + "\\Material\\" + materialName + ".txt"));
+        BufferedReader br = new BufferedReader(new FileReader(materialFolderPath + materialName + ".txt"));
         ArrayList<String[]> materialArray = new ArrayList<>();
 
         String a = br.readLine();
@@ -221,8 +259,7 @@ public class IO {
         return materialMatrix;
     }
     public boolean materialReader(String materialName) throws IOException {
-
-        BufferedReader br = new BufferedReader(new FileReader(this.folderName() + "\\Material\\" + materialName + ".txt"));
+        BufferedReader br = new BufferedReader(new FileReader(materialFolderPath + materialName + ".txt"));
 
         String a = br.readLine();
         boolean split = false;
