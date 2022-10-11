@@ -40,14 +40,6 @@ public class Main {
             io.SystemOutSplit(m.getLayerThickness(), f.getTarray(), m.getLayerCount());
         }
 
-//Explicit solver, Enthalpy, each layer is divided into multiple elements
-        else if(Constants.MODEL == 3){
-            System.out.println("Model 3");
-            m.material(io.inputList, true);
-            f.femSplit(io.getTime(), m.getLayerListSplit(), c.getAdiabatisk());
-            io.SystemOut(f.getTarray());
-        }
-
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);
     }

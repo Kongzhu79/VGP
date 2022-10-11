@@ -67,6 +67,7 @@ public class FemCalc {
     public double[] getQ(double[] T, double Texposed, double Tunexposed, boolean adiabatic, int[] voidL){
         double Qin = Constants.EPSILON * Constants.SIGMA * (Math.pow(Texposed + 273.15, 4) - Math.pow(T[0] + 273.15, 4)) + Constants.H_EXPOSED * (Texposed - T[0]);
         double Qut;
+
         if(adiabatic){
             Qut = 0;
         }
@@ -101,7 +102,6 @@ public class FemCalc {
         numberMatrials = i + 1;
     }
     public void Cp(ArrayList<double[][]> material, double[] T){
-        FemCalc fc = new FemCalc();
         int a = material.size();
         C = new double[a + 1][a + 1];
         voidLayer = new int[a + 1];
@@ -113,51 +113,49 @@ public class FemCalc {
                 double Cnew;
                 if(T[i] > 105){
                     layerData[0][4] = 0;
-                    Cnew = fc.getC(layerData, T ,i);
+                    Cnew = this.getC(layerData, T ,i);
                 }
                 else if(T[i] > 100){
-                    Cnew = fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) + fc.getMoist(layerData) / 100 * fc.getRho(layerData) * fc.getX(layerData);
+                    Cnew = this.getC(layerData, T ,i) * this.getRho(layerData) * this.getX(layerData) + this.getMoist(layerData) / 100 * this.getRho(layerData) * this.getX(layerData);
                 }
                 else{
-                    Cnew = fc.getC(layerData, T ,i);
+                    Cnew = this.getC(layerData, T ,i);
                 }
 
                 C[i][i] = C[i][i] + Cnew / 2;
-                C[i + 1][i + 1] = Cnew * fc.getRho(layerData) * fc.getX(layerData) / 2;
+                C[i + 1][i + 1] = Cnew * this.getRho(layerData) * this.getX(layerData) / 2;
             }
             else{
                 if(layerData[0][1] == 0){
                     voidLayer[i] = 1;
                 }
-                C[i][i] = C[i][i] + 1.0 * fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) / 2;
-                C[i + 1][i + 1] = 1.0 * fc.getC(layerData, T ,i) * fc.getRho(layerData) * fc.getX(layerData) / 2;
+                C[i][i] = C[i][i] + 1.0 * this.getC(layerData, T ,i) * this.getRho(layerData) * this.getX(layerData) / 2;
+                C[i + 1][i + 1] = 1.0 * this.getC(layerData, T ,i) * this.getRho(layerData) * this.getX(layerData) / 2;
             }
         }
     }
     public double[][] K(ArrayList<double[][]> material, double[] T){
-        FemCalc fc = new FemCalc();
         int a = material.size() + 1;
         double[][] K = new double[a][a];
         double[][] layerData;
         for(int i = 0; i < a - 1; i++){
             layerData = material.get(i);
-            if(fc.getK(layerData, T, i) == 0.0){
+            if(this.getK(layerData, T, i) == 0.0){
                 K[i][i] = K[i][i] + 0.0;
                 K[i + 1][i] = 0.0;
                 K[i][i + 1] = 0.0;
                 K[i + 1][i + 1] = 0.0;
             }
             else{
-                K[i][i] = K[i][i] + fc.getK(layerData, T, i) / fc.getX(layerData);
-                K[i + 1][i] = - 1.0 * fc.getK(layerData, T, i) / fc.getX(layerData);
-                K[i][i + 1] = - 1.0 * fc.getK(layerData, T, i) / fc.getX(layerData);
-                K[i + 1][i + 1] = fc.getK(layerData, T, i) / fc.getX(layerData);
+                K[i][i] = K[i][i] + this.getK(layerData, T, i) / this.getX(layerData);
+                K[i + 1][i] = - 1.0 * this.getK(layerData, T, i) / this.getX(layerData);
+                K[i][i + 1] = - 1.0 * this.getK(layerData, T, i) / this.getX(layerData);
+                K[i + 1][i + 1] = this.getK(layerData, T, i) / this.getX(layerData);
             }
         }
         return K;
     }
     public double[][] CpSplit(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
-        FemCalc fc = new FemCalc();
         int cnt = 0;
         voidLayer = new int[globalM];
         double[][] CSplit = new double[globalM][globalM];
@@ -166,15 +164,14 @@ public class FemCalc {
                 if(layerData[0][1] == 0){
                     voidLayer[cnt] = 1;
                 }
-                CSplit[cnt][cnt] = CSplit[cnt][cnt] + 1.0 * fc.getC(layerData, T ,cnt) * fc.getRho(layerData) * fc.getX(layerData) / 2;
-                CSplit[cnt + 1][cnt + 1] = 1.0 * fc.getC(layerData, T ,cnt) * fc.getRho(layerData) * fc.getX(layerData) / 2;
+                CSplit[cnt][cnt] = CSplit[cnt][cnt] + 1.0 * this.getC(layerData, T ,cnt) * this.getRho(layerData) * this.getX(layerData) / 2;
+                CSplit[cnt + 1][cnt + 1] = 1.0 * this.getC(layerData, T ,cnt) * this.getRho(layerData) * this.getX(layerData) / 2;
                 cnt++;
             }
         }
         return CSplit;
     }
     public double[][] KSplit(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
-        FemCalc fc = new FemCalc();
         int a = materialSplit.size();
         int cnt = 0;
         ArrayList<double[][]> materialTemp;
@@ -182,17 +179,17 @@ public class FemCalc {
         for(int i = 0; i < a; i++){
             materialTemp = materialSplit.get(i);
             for(double[][] layerData : materialTemp){
-                if(fc.getK(layerData, T, i) == 0.0){
+                if(this.getK(layerData, T, i) == 0.0){
                     K[cnt][cnt] = K[cnt][cnt] + 0.0;
                     K[cnt + 1][cnt] = 0.0;
                     K[cnt][cnt + 1] = 0.0;
                     K[cnt + 1][cnt + 1] = 0.0;
                 }
                 else{
-                    K[cnt][cnt] = K[cnt][cnt] + fc.getK(layerData, T, cnt) / fc.getX(layerData);
-                    K[cnt + 1][cnt] = - 1.0 * fc.getK(layerData, T, cnt) / fc.getX(layerData);
-                    K[cnt][cnt + 1] = - 1.0 * fc.getK(layerData, T, cnt) / fc.getX(layerData);
-                    K[cnt + 1][cnt + 1] = fc.getK(layerData, T, cnt) / fc.getX(layerData);
+                    K[cnt][cnt] = K[cnt][cnt] + this.getK(layerData, T, cnt) / this.getX(layerData);
+                    K[cnt + 1][cnt] = - 1.0 * this.getK(layerData, T, cnt) / this.getX(layerData);
+                    K[cnt][cnt + 1] = - 1.0 * this.getK(layerData, T, cnt) / this.getX(layerData);
+                    K[cnt + 1][cnt + 1] = this.getK(layerData, T, cnt) / this.getX(layerData);
                 }
                 cnt++;
             }
