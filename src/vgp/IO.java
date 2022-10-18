@@ -22,10 +22,9 @@ public class IO {
     String outputFilePath;
     String fireFilePath;
     public static String materialFolderPath;
-    ArrayList<String[]> inputList;
+    public static ArrayList<String[]> inputList;
     ArrayList<String[]> configList;
     int time;
-
     public int getTime(){
         return time;
     }
@@ -76,7 +75,6 @@ public class IO {
         br.close();
 
         return folderList;
-
     }
     public ArrayList<String[]> inputFileReader(String fileName)throws IOException{
 
@@ -89,8 +87,12 @@ public class IO {
         time = Integer.parseInt(br.readLine());
         String a = br.readLine();
         while(a != null){
-            stringArray = a.split(" ");
-            stringList.add(stringArray);
+            if(a.isEmpty()){
+            }
+            else {
+                stringArray = a.split(" ");
+                stringList.add(stringArray);
+            }
             a = br.readLine();
         }
         br.close();
@@ -107,14 +109,17 @@ public class IO {
 
         String a = br.readLine();
         while(a != null){
-            stringArray = a.split(" ");
-            configListTemp.add(stringArray);
+            if(a.isEmpty()){
+            }
+            else {
+                stringArray = a.split(" ");
+                configListTemp.add(stringArray);
+            }
             a = br.readLine();
         }
         br.close();
         return configListTemp;
     }
-
     public double[][] getFireTemperature()throws IOException{
         String[] stringArray;
         ArrayList<String> fireTemperatureList = new ArrayList<>();
@@ -142,8 +147,7 @@ public class IO {
         }
         return fireTemperature;
     }
-
-    public void SystemOut(double[][] Tarray)throws IOException{
+    public void SystemOutSimple(double[][] Tarray)throws IOException{
         DecimalFormat df = new DecimalFormat("0.0");
         DecimalFormat dfTime = new DecimalFormat("0");
         BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
@@ -176,8 +180,7 @@ public class IO {
         }
         print.close();
     }
-
-    public void SystemOutSplit(double[] layerThickness, double[][] Tarray, int[] splitCount)throws IOException{
+    public void SystemOutOld(double[] layerThickness, double[][] Tarray, int[] splitCount)throws IOException{
 
         DecimalFormat df1 = new DecimalFormat("0.0");
         BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
@@ -230,12 +233,78 @@ public class IO {
         }
         print.close();
     }
+    public void SystemOut(double[] layerThickness, ArrayList<ArrayList<double[]>> TList, ArrayList<int[]> layerCountUpdate)throws IOException{
 
+        DecimalFormat df1 = new DecimalFormat("0.0");
+        BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
+
+        System.out.println("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
+        print.write("Exponering på framsidan: " + Constants.FIRE_CURVE_EXPOSED);
+        print.newLine();
+
+        for(String[] input : inputList){
+            System.out.println(input[0] + " " + input[1]);
+            print.write(input[0] + " " + input[1]);
+            print.newLine();
+        }
+        System.out.println("Boundary unexposed side: " + Constants.FIRE_CURVE_UNEXPOSED);
+        print.write("Exponering på baksidan: " + Constants.FIRE_CURVE_UNEXPOSED);
+        print.newLine();
+
+        String timeAlign = "%4s";
+        String align = "%8s";
+
+        double c = 0;
+        int t = 0;
+
+        System.out.print("Tid     -1.0     " + c);
+        print.write("Tid     -1.0     " + c);
+
+        for(double thickness : layerThickness){
+            c = thickness + c;
+            System.out.printf(align, df1.format(c * 1000).replace(",", "."));
+            print.write(String.format(align, df1.format(c * 1000).replace(",", ".")));
+        }
+        System.out.println();
+        print.newLine();
+
+        for(int k = 0; k < TList.size(); k++) {
+            ArrayList<double[]> temp = TList.get(k);
+            int lFirst = TList.get(0).get(0).length;
+            int lNew = TList.get(k).get(0).length;
+            for (int i = 0; i < temp.size(); i++) {
+                if((t % Constants.SECONDS_BETWEEN_PRINT_OUT) == 0) {
+                    System.out.printf(timeAlign, (t / 60));
+                    print.write(String.format(timeAlign, (t / 60)));
+
+                    System.out.printf(align, df1.format(temp.get(i)[1]).replace(",", "."));
+                    print.write(String.format(align, df1.format(temp.get(i)[layerCountUpdate.get(k)[1]]).replace(",", ".")));
+
+                    for (int l = 0; l < lFirst - lNew; l++) {
+                        System.out.printf(align, " ");
+                        print.write(String.format(align, " "));
+                    }
+
+                    System.out.printf(align, df1.format(temp.get(i)[2]).replace(",", "."));
+                    print.write(String.format(align, df1.format(temp.get(i)[layerCountUpdate.get(k)[2]]).replace(",", ".")));
+
+                    for (int j = 2; j < layerCountUpdate.get(k).length; j++) {
+                        System.out.printf(align, df1.format(temp.get(i)[layerCountUpdate.get(k)[j] + 1]).replace(",", "."));
+                        print.write(String.format(align, df1.format(temp.get(i)[layerCountUpdate.get(k)[j] + 1]).replace(",", ".")));
+                    }
+
+                    System.out.println();
+                    print.newLine();
+                }
+                t++;
+            }
+        }
+        print.close();
+    }
     public void printTime(long startTime, long endTime) {
         DecimalFormat df1 = new DecimalFormat("0.00");
         System.out.println("Run time: " + df1.format((endTime - startTime) / 1000000000.0).replace(",",".") + " sec");
     }
-
     public double[][] materialReader(String materialName, double x) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(materialFolderPath + materialName + ".txt"));
@@ -255,15 +324,15 @@ public class IO {
         }
         return materialMatrix;
     }
-    public boolean materialReader(String materialName) throws IOException {
+    public double[] materialReaderUpdate(String materialName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(materialFolderPath + materialName + ".txt"));
 
         String a = br.readLine();
-        boolean split = false;
+        double[] b = new double[2];
+        b[0] = Double.parseDouble(a.split("\t")[5]);
+        a = br.readLine();
+        b[1] = Double.parseDouble(a.split("\t")[2]);
 
-        if(a.split("\t")[5].equalsIgnoreCase("1")){
-            split = true;
-        }
-        return split;
+        return b;
     }
 }

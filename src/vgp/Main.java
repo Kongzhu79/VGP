@@ -6,6 +6,7 @@
 package vgp;
 
 import java.io.*;
+
 /**
  *
  * @author jsm
@@ -15,7 +16,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         long startTime = System.nanoTime();
         IO io = new IO();
         Material m = new Material();
@@ -25,21 +26,30 @@ public class Main {
         c.setConstants(io.configList);
 
 //Explicit solver, Specific heat, each layer is one element
-        if(Constants.MODEL == 1){
+//Can be approximated using the default model by setting the fall-off temperature to
+//a value higher than the max fire temperature
+        if (Constants.MODEL == 1) {
             System.out.println("Model 1");
-            m.material(io.inputList, false);
-            f.fem(io.getTime(), m.getLayerList(), c.getAdiabatisk());
-            io.SystemOut(f.getTarray());
+            m.material(IO.inputList, false);
+            f.fem(io.getTime(), m.getLayerList(), c.getAdiabatic());
+            io.SystemOutSimple(f.getTarray());
         }
 
-//Explicit solver, Specific heat, each layer is divided into multiple elements - Default model
-        else if(Constants.MODEL == 2){
+//Explicit solver, Specific heat, each layer is divided into multiple elements - default model
+        else if (Constants.MODEL == 2) {
             System.out.println("Model 2");
-            m.material(io.inputList, true);
-            f.femSplit(io.getTime(), m.getLayerListSplit(), c.getAdiabatisk());
-            io.SystemOutSplit(m.getLayerThickness(), f.getTarray(), m.getLayerCount());
+            m.material(IO.inputList, true);
+            f.femSplitFallOff(io.getTime(), m.getLayerListSplitUpdate(), c.getAdiabatic(), IO.inputList, true);
+            io.SystemOut(m.getLayerThickness(), f.TList, f.getLayerCountUpdate());
         }
-
+//Explicit solver, Specific heat, each layer is divided into multiple elements
+//Can be approximated using the default model by setting the fall-off temperature to 0
+        else if (Constants.MODEL == 3) {
+            System.out.println("Model 3");
+            m.material(IO.inputList, true);
+            f.femSplit(io.getTime(), m.getLayerListSplit(), c.getAdiabatic());
+            io.SystemOutOld(m.getLayerThickness(), f.getTarray(), m.getLayerCount());
+        }
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);
     }

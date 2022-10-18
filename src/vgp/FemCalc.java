@@ -91,6 +91,7 @@ public class FemCalc {
         return Q;
     }
     public void globalMatris(ArrayList<ArrayList<double[][]>> materialSplit){
+
         int b = 0;
         int i = 0;
 
@@ -195,5 +196,9 @@ public class FemCalc {
             }
         }
         return K;
+    }
+    public void globalMatrixNull() {
+        globalMatrixM = 0;
+        numberMatrials = 0;
     }
 }

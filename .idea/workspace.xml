@@ -7,9 +7,35 @@
     <list default="true" id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GF.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/GF.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/RW100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW140.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/RW140.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW30.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/RW30.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW75.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/RW75.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/brennix.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/brennix.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/brick.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/brick.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concEN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/concEN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concJTR.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/concJTR.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concLWC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/concLWC.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/custom.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/custom.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/customE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/customE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/fermacellA1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/fermacellA1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/fibreGlass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/fibreGlass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/grout.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/grout.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/habito.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/habito.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/minerit.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/minerit.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/promatectH.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/promatectH.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/promatectL.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/promatectL.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/steel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/steel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/ultimate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/ultimate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/wood.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/wood.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/woodBoard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/woodBoard.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FEM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FemCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FemCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Material.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

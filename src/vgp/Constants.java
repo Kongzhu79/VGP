@@ -153,7 +153,7 @@ public class Constants {
         KC_MAX = constListArray[16];
     }
     
-    public boolean getAdiabatisk(){
+    public boolean getAdiabatic(){
         if(FIRE_CURVE_UNEXPOSED == 0){
             return true;
         }
