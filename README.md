@@ -52,6 +52,6 @@ Saker som ska fixas:
 - [x] Ge möjlighet att ha konstanta materialdata i avsvalningsfasen  
 - [x] Separata sökvägar i VGP-filen för de olika indatafilerna  
 - [ ] Skriv ny beräkningsrutin som bygger på entalpi  
-- [ ] Inkorporera Jacobs arbete med bortfall  
+- [x] Inkorporera Jacobs arbete med bortfall  
 - [ ] Förbättra tidsstegsgeneratorn att motsvara TASEF?  
 - [ ] Skapa grafisk output?  
