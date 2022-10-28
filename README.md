@@ -35,7 +35,15 @@ Eller på formen
         <tid i sekunder> <Tr> <Tg>
 
 för de fall olika strålnings- och gastemperatur önskas. Dessa omräknas till en adiabatisk yttemperatur i VGP och ansätts sedan som randvillkor.
-    
+
+7. Material skapas som textfiler och läggs i Materialmappen enligt specifikationen i VGP.txt. I textfilen skrivs materialegenskaperna in på formen
+
+        <temperatur> <k> <cp> <densitet> <fukthalt> <bortfallstemperatur>
+        <temperatur> <k> <cp> <densitet> <fukthalt>
+        ...
+        
+Det är filnamnet (utan .txt) som sedan anropas i indatafilen, dvs. \<material1\> osv. Det finns inga begränsningar i hur många materialdatafiler man kan skapa eller anropa i indatafilen.
+
 ## Körning
   
 Genom att exekvera projektet i det valda IDE:et läses filerna in och beräknas. Det skapas utdata både i en fil som heter <filnamn för outputfilen>.txt och direkt i IDE:ns terminal. 
