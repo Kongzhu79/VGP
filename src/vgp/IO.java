@@ -186,7 +186,7 @@ public class IO {
         BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
 
         System.out.println("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
-        print.write("Exponering på framsidan: " + Constants.FIRE_CURVE_EXPOSED);
+        print.write("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
         print.newLine();
 
         for(String[] input : inputList){
@@ -195,7 +195,7 @@ public class IO {
             print.newLine();
         }
         System.out.println("Boundary unexposed side: " + Constants.FIRE_CURVE_UNEXPOSED);
-        print.write("Exponering på baksidan: " + Constants.FIRE_CURVE_UNEXPOSED);
+        print.write("Boundary unexposed side: " + Constants.FIRE_CURVE_UNEXPOSED);
         print.newLine();
 
         String timeAlign = "%4s";
@@ -204,8 +204,8 @@ public class IO {
         int a = Tarray.length;
         double c = 0;
         
-        System.out.print("Tid     -1.0     " + c);
-        print.write("Tid     -1.0     " + c);
+        System.out.print("Time    -1.0     " + c);
+        print.write("Time    -1.0     " + c);
 
         for(double thickness : layerThickness){
             c = thickness + c;
@@ -239,7 +239,7 @@ public class IO {
         BufferedWriter print = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Path.of(outputFilePath))));
 
         System.out.println("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
-        print.write("Exponering på framsidan: " + Constants.FIRE_CURVE_EXPOSED);
+        print.write("Boundary exposed side: " + Constants.FIRE_CURVE_EXPOSED);
         print.newLine();
 
         for(String[] input : inputList){
@@ -248,7 +248,7 @@ public class IO {
             print.newLine();
         }
         System.out.println("Boundary unexposed side: " + Constants.FIRE_CURVE_UNEXPOSED);
-        print.write("Exponering på baksidan: " + Constants.FIRE_CURVE_UNEXPOSED);
+        print.write("Boundary unexposed side: " + Constants.FIRE_CURVE_UNEXPOSED);
         print.newLine();
 
         String timeAlign = "%4s";
@@ -257,8 +257,8 @@ public class IO {
         double c = 0;
         int t = 0;
 
-        System.out.print("Tid     -1.0     " + c);
-        print.write("Tid     -1.0     " + c);
+        System.out.print("Time    -1.0     " + c);
+        print.write("Time    -1.0     " + c);
 
         for(double thickness : layerThickness){
             c = thickness + c;
