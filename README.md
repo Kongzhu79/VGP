@@ -1,65 +1,63 @@
 # VGP
 
-Det stora städprojektet för VGP 2.0. Koden ska rensas på onödig kod och förhoppningen är att kunna skapa en beräkningsrutin som bygger på entalpi istället för som  idag, att alla beräkningar måste gå genom specifikt värme. Förhoppningen är att beräkningsrutinen blir stabilare. 
+VGP 2.0 is a finite element code for temperature calculations in one dimension targeted on fire safety design. It is useful when calculating thermal penetration in walls and fire protection of for example steel members. The name VGP (VärmeGenomströmningsProgram) comes from a code developed by Jörgen Thor solving the same set of problems.
 
 ## Installation
 
-1. Installera IntelliJ eller annat IDE som kan hantera java-projekt.
-2. Kopiera koden härifrån antingen direkt via en .zip-fil eller genom att klona den med Github desktop eller motsvarande.
-3. Skapa en fil som heter VGP.txt och lägg den i en mapp som heter c:\VGP\. Denna fil ska innehålla sökvägar till mappen med övriga indatafiler på formen
+1. Install [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) or any IDE that can handle java-code projects.
+2. Copy the code by downloading the code or clone it using github desktop. A description of how-to is given [here](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop).
+3. Create a .txt-file called VGP.txt and save it in a folder called c:\VGP\. This file should contain paths to files and folders of other input files used by VGP. The file should be written on the form
 
-        CONFIG_PATH '<sökväg><filnamn för configfilen>.txt  
-        INPUT_PATH '<sökväg><filnamn för inputfilen>.txt  
-        OUTPUT_PATH '<sökväg><filnamn för outputfilen>.txt  
-        MATERIAL_PATH '<sökväg><filnamn för mappen med material>\  
-        FIRE_PATH '<sökväg><filnamn för brandfilen>.txt  
+        CONFIG_PATH '<path><file name of the config file>.txt  
+        INPUT_PATH '<path><file name of input file>.txt  
+        OUTPUT_PATH '<path><file name of the output file>.txt  
+        MATERIAL_PATH '<path><name of the folder with materials>\  
+        FIRE_PATH '<path><file name of the fire file>.txt  
 
-4. I  mappen  med indatafiler, skapa en fil med samma namn som <filnamn för configfilen>. I den filen skrivs övergripande inställningar in som tidssteg, beräkningsmodell, värmeövergångstal, randvillkor osv... Vilka val som kan göras finns noterade i filen Konstanter och skrivs på den form som anges i rutinen setConstants på raderna 83 till 99. Viss förklaring till varje parameter ges vid definitionen i samma fils inledning.
-5. I mappen  med indatafiler, skapa en fil med samma namn som <filnamn för inputfilen>. I den filen skrivs det som ska beräknas på formen
+4. In the folder with the config file, create a file with the same name as <file name of the config file>. This file is used to specify general settings of the calculations such as time step, calculation model, heat transfer coefficient, boundary conditions etc... The choices are specified in the class Constants and is written on the form given in the object setConstants() on the rows 137 to 153. Each choice is there presented with a brief description of the parameter a the beginning of the [class](https://github.com/Kongzhu79/VGP/blob/main/src/vgp/Constants.java).
+5. In the folder with the input file, create a file with the same name as <file name of the input file>. In this file, the layers in the calculation is specified on the form
 
-        <tid i sekunder>  
-        <tjocklek i mm> <material1>  
-        <tjocklek i mm> <material2>  
-        osv.
+        <time in seconds>  
+        <thickness of layer1 in mm> <material1>  
+        <thickness of layer2 in mm> <material2>  
+        etc...
 
-Efter sista materialet se till så att det blir en radbrytning.
+6. If the fire needs to be specified as time-temperature pairs, create a file with the same name as <file name of the fire file>. The time-temperature pairs in this file is specified on the form
 
-6. För det fall branden ska behöver specificeras i en separat fil görs det i filen <filnamn för branfilen> på formen
-
-        <tid i sekunder> <Tf>
-        <tid i sekunder> <Tf>
+        <time in seconds> <Tf>
+        <time in seconds> <Tf>
+        etc...
         
-Eller på formen 
+or as 
 
-        <tid i sekunder> <Tr> <Tg>
-        <tid i sekunder> <Tr> <Tg>
+        <time in seconds> <Tr> <Tg>
+        <time in seconds> <Tr> <Tg>
+        etc...
 
-för de fall olika strålnings- och gastemperatur önskas. Dessa omräknas till en adiabatisk yttemperatur i VGP och ansätts sedan som randvillkor.
+for cases where different radiation- and gas temperatures are required.
 
-7. Material skapas som textfiler och läggs i Materialmappen enligt specifikationen i VGP.txt. I textfilen skrivs materialegenskaperna in på formen
+7. Material are created as text files saved in the folder specified in VGP.txt. One file per material is needed and the file is written on the form
 
-        <temperatur> <k> <cp> <densitet> <fukthalt> <bortfallstemperatur>
-        <temperatur> <k> <cp> <densitet> <fukthalt>
-        ...
+        <temperature> <k> <cp> <density> <moisture content> <fall-off temperature>
+        <temperature> <k> <cp> <density> <moisture content>
+        etc...
         
-Det är filnamnet (utan .txt) som sedan anropas i indatafilen, dvs. \<material1\> osv. Det finns inga begränsningar i hur många materialdatafiler man kan skapa eller anropa i indatafilen.
+When calling for a material in the input file, use the file name of the material (without .txt at the end), i.e., \<material1\> etc. There are no limitations as to how many materials can be created or used in the input file.
 
-## Körning
+## Running the code
   
-Genom att exekvera projektet i det valda IDE:et läses filerna in och beräknas. Det skapas utdata både i en fil som heter <filnamn för outputfilen>.txt och direkt i IDE:ns terminal. 
+By executing the the main class, the files are read and calculated. The output is generated in the prompt of the IDE but also in a file named <file name of the output file> located as specified in VGP.txt. 
 
-## Att göra
+## To-Do
     
-Saker som ska fixas:
-
-- [x] Rensa bland beräkningsmodeller  
-- [x] Byta ut alla "Vector" mot ArrayList  
-- [x] Strukturera och kommentera koden så att den blir begriplig för eftervärlden  
-- [x] Rensa bort överflödig kod  
-- [x] Flytta ut materialdatabasen  
-- [x] Ge möjlighet att ha konstanta materialdata i avsvalningsfasen  
-- [x] Separata sökvägar i VGP-filen för de olika indatafilerna  
-- [ ] Skriv ny beräkningsrutin som bygger på entalpi  
-- [x] Inkorporera Jacobs arbete med bortfall  
-- [ ] Förbättra tidsstegsgeneratorn att motsvara TASEF?  
-- [ ] Skapa grafisk output?  
+- [x] Clean up amongst calculation models  
+- [x] Change all "Vectors" to ArrayList  
+- [x] Structure and comment the code  
+- [x] Clean abundant code  
+- [x] Make material database as external files  
+- [x] Include possibility of constant material properties in cooling phase  
+- [x] Separate paths in VGP.txt for the different files  
+- [ ] Write new calculation model based on enthalpy  
+- [x] Include fall-off
+- [ ] Improve time step generator (maybe-project)  
+- [ ] Create UI (maybe-project)  
