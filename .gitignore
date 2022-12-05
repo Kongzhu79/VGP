@@ -1,2 +1,6 @@
 /nbproject
+.idea/
+dist/
+out/
+*.pdf
 

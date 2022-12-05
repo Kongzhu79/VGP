@@ -10,13 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/VGP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VGP.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/GN.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/steel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/steel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/voidLayer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/voidLayer.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/wood.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Material/wood.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GF.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GN1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GN2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/GN3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW140.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/RW75.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/brennix.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/brick.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concEN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concJTR.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/concLWC.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/custom.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/customE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/fermacellA1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/fibreGlass.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/grout.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/habito.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/minerit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/promatectH.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/promatectL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/robust.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/steel.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/ultimate.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/vermiculux.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/voidLayer.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/wood.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Material/woodBoard.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/FEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FEM.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +84,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;last_opened_file_path&quot;: &quot;C:/Users/joakim.sandstrom/github/VGP&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
 }</component>
   <component name="RunManager">
@@ -99,6 +128,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/VGP$Main.ic" NAME="Main Coverage Results" MODIFIED="1654680546149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
