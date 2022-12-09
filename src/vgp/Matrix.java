@@ -24,18 +24,18 @@ public class Matrix {
         }
         return arrayNew;
     }
-    public double[][] CInverted(double[][] matris){ //Column x row
-        int a = matris.length;
-        int b = matris[0].length;
+    public double[][] CInverted(double[][] matrix){ //Column x row
+        int a = matrix.length;
+        int b = matrix[0].length;
 
         for(int i = 0; i < a; i++){
             for(int j = 0; j < b; j++){
-                if(matris[i][j] != 0){
-                    matris[i][j] = 1 / matris[i][j];
+                if(matrix[i][j] != 0){
+                    matrix[i][j] = 1 / matrix[i][j];
                 }
             }
         }
-        return matris;
+        return matrix;
     }
     public double[] arrayAddition(double[] array1, double[] array2){
         int a = array1.length;

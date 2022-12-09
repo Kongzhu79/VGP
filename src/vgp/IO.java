@@ -335,4 +335,23 @@ public class IO {
 
         return b;
     }
+    public double[][] materialReaderTASEF(String materialName, double x) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(materialFolderPath + materialName + ".txt"));
+        ArrayList<String[]> materialArray = new ArrayList<>();
+
+        String a = br.readLine();
+        while(a != null){
+            materialArray.add(a.split("\t"));
+            a = br.readLine();
+        }
+        double[][] materialMatrix = new double[materialArray.size()][6];
+        for(int i = 0 ; i < materialArray.size(); i++){
+            for(int j = 0; j < materialArray.get(i).length - 1; j++){
+                materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j]));
+            }
+            materialMatrix[i][5] = x;
+        }
+        return materialMatrix;
+    }
 }

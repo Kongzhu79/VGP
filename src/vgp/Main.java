@@ -50,6 +50,13 @@ public class Main {
             f.femSplit(io.getTime(), m.getLayerListSplit(), c.getAdiabatic());
             io.SystemOutOld(m.getLayerThickness(), f.getTarray(), m.getLayerCount());
         }
+//Explicit solver, Specific heat, each layer is divided into multiple elements - default model
+        else if (Constants.MODEL == 4) {
+            System.out.println("Model 4");
+            m.materialTASEF(IO.inputList, true);
+            f.femTASEFFallOff(io.getTime(), m.getLayerListSplitUpdate(), c.getAdiabatic(), IO.inputList, true);
+            io.SystemOut(m.getLayerThickness(), f.TList, f.getLayerCountUpdate());
+        }
         long endTime = System.nanoTime();
         io.printTime(startTime, endTime);
     }

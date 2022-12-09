@@ -55,6 +55,23 @@ public class FemCalc {
         }
         return c;
     }
+    public double getEfromT(double[][] layerMaterial, double[] T, int elementNumber){
+        double c = 0;
+        double a = layerMaterial.length;
+        double elementTemperature = T[elementNumber];
+        for(int i = 1; i < a; i++){
+            if(elementTemperature < layerMaterial[i][0]){
+                double temperatureOverLastInput = elementTemperature - layerMaterial[i - 1][0];
+                double differenceInput = layerMaterial[i][2] - layerMaterial[i - 1][2];
+                double differenceTemperature = layerMaterial[i][0] - layerMaterial[i - 1][0];
+                double kPerTemperatureIncrement = differenceInput / differenceTemperature;
+
+                c = (layerMaterial[i - 1][2] + temperatureOverLastInput * kPerTemperatureIncrement) / T[elementNumber];
+                break;
+            }
+        }
+        return c;
+    }
     public double getRho(double[][] layerData){
         return layerData[0][3];
     }
@@ -117,6 +134,7 @@ public class FemCalc {
                     Cnew = this.getC(layerData, T ,i);
                 }
                 else if(T[i] > 100){
+                    //Check this!!
                     Cnew = this.getC(layerData, T ,i) * this.getRho(layerData) * this.getX(layerData) + this.getMoist(layerData) / 100 * this.getRho(layerData) * this.getX(layerData);
                 }
                 else{
@@ -172,6 +190,22 @@ public class FemCalc {
         }
         return CSplit;
     }
+    public double[][] CmSplit(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
+        int cnt = 0;
+        voidLayer = new int[globalM];
+        double[][] cm = new double[globalM][globalM];
+        for(ArrayList<double[][]> materialTemp : materialSplit){
+            for(double[][] layerData : materialTemp){
+                if(layerData[0][1] == 0){
+                    voidLayer[cnt] = 1;
+                }
+                cm[cnt][cnt] = cm[cnt][cnt] + 1.0 * this.getEfromT(layerData, T ,cnt) * this.getX(layerData) / 2;
+                cm[cnt + 1][cnt + 1] = 1.0 * this.getEfromT(layerData, T ,cnt) * this.getX(layerData) / 2;
+                cnt++;
+            }
+        }
+        return cm;
+    }
     public double[][] KSplit(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, int globalM){
         int a = materialSplit.size();
         int cnt = 0;
@@ -200,5 +234,45 @@ public class FemCalc {
     public void globalMatrixNull() {
         globalMatrixM = 0;
         numberMatrials = 0;
+    }
+    public double getE(double[][] layer1, double[][] layer2, double[] T, int nodeNumber){
+        return get_e(layer1, T[nodeNumber]) * layer1[0][5] / 2 + get_e(layer2, T[nodeNumber]) * layer2[0][5] / 2;
+    }
+    public double getE(int n, double[][] layer2, double[] T, int nodeNumber){
+        return get_e(layer2, T[nodeNumber]) * layer2[0][5] / 2;
+    }
+    public double getE(double[][] layer1, int n, double[] T, int nodeNumber){
+        return get_e(layer1, T[nodeNumber]) * layer1[0][5] / 2;
+    }
+    public double get_e(double[][] material, double elementTemperature){
+
+        double e = material[0][2];
+        double a = material.length;
+
+        for(int i = 1; i < a; i++){
+            if(elementTemperature < material[i][0]){
+                double temperatureOverLastInput = elementTemperature - material[i - 1][0];
+                double differenceInput = material[i][2] - material[i - 1][2];
+                double differenceTemperature = material[i][0] - material[i - 1][0];
+                double kPerTemperatureIncrement = differenceInput / differenceTemperature;
+                e = material[i - 1][2] + temperatureOverLastInput * kPerTemperatureIncrement;
+                break;
+            }
+        }
+        return e;
+    }
+    public double[] getTfromE(ArrayList<ArrayList<double[][]>> materialSplit, double[] T, double[] E){
+
+        FemCalc fc = new FemCalc();
+        Matrix m = new Matrix();
+        double[] Ttemp = m.matrisXarray(m.CInverted(fc.CmSplit(materialSplit, T, T.length)), E);
+
+        for (int i = 0; i < Ttemp.length; i++){
+            while (Math.abs(2 * (T[i] - Ttemp[i]) / (T[i] + Ttemp[i])) > 0.01){ //This number i the precision of the calculations. TASEF uses 0.01, so is this code.
+                T[i] = Ttemp[i];
+                Ttemp = m.matrisXarray(m.CInverted(fc.CmSplit(materialSplit, T, T.length)), E);
+            }
+        }
+        return T;
     }
 }

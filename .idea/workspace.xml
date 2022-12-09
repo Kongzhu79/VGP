@@ -13,39 +13,13 @@
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/VGP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VGP.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GF.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GN1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GN2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/GN3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/RW100.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/RW140.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/RW30.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/RW75.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/brennix.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/brick.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/concEN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/concJTR.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/concLWC.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/custom.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/customE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/fermacellA1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/fibreGlass.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/grout.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/habito.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/minerit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/promatectH.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/promatectL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/robust.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/steel.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/ultimate.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/vermiculux.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/voidLayer.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/wood.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Material/woodBoard.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/FEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FEM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/FemCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FemCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
