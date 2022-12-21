@@ -57,7 +57,8 @@ By executing the the main class, the files are read and calculated. The output i
 - [x] Make material database as external files  
 - [x] Include possibility of constant material properties in cooling phase  
 - [x] Separate paths in VGP.txt for the different files  
-- [ ] Write new calculation model based on enthalpy  
+- [x] Write new calculation model based on enthalpy  
 - [x] Include fall-off
+- [ ] Gaussian Quadrature (maybe-project)
 - [ ] Improve time step generator (maybe-project)  
 - [ ] Create UI (maybe-project)  
