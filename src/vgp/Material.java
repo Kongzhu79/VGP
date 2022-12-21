@@ -113,7 +113,6 @@ public class Material {
         layerThickness = new double[materialList.size()];
         splitNodes = new ArrayList<>();
         int i = 0;
-        int cnt1 = 0;
 
         for(String[] materialString : materialList) {
             ArrayList<double[][]> layerListTemp = new ArrayList<>();

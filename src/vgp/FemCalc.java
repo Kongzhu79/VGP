@@ -268,9 +268,24 @@ public class FemCalc {
         double[] Ttemp = m.matrisXarray(m.CInverted(fc.CmSplit(materialSplit, T, T.length)), E);
 
         for (int i = 0; i < Ttemp.length; i++){
-            while (Math.abs(2 * (T[i] - Ttemp[i]) / (T[i] + Ttemp[i])) > 0.01){ //This number i the precision of the calculations. TASEF uses 0.01, so is this code.
-                T[i] = Ttemp[i];
+            int cnt = 0;
+            double diff = Math.abs(Ttemp[i] - T[i]);
+            while (Math.abs(2 * (T[i] - Ttemp[i]) / (T[i] + Ttemp[i])) > 0.01){ //This number is the precision of the calculations. TASEF uses 0.01, so is this code.
+                if(cnt > 10){
+                    //This routine is implemented for iterations where convergence is extra complicated. Such cases are usually located at the interface between
+                    //different entalphy steps in the material files. For this case, the temperature often jumps between two different temperatures indefinitely.
+                    //The routine skips the normal iteration and uses a step wise increase or decrease of the temperature until convergence is reached.
+                    if(T[i] > Ttemp[i]){
+                        T[i] = T[i] - diff * 0.1;
+                    } else{
+                        T[i] = T[i] + diff * 0.1;
+                    }
+                } else{
+                    T[i] = Math.pow(T[i] * Ttemp[i], 1 / 2.0);
+                }
                 Ttemp = m.matrisXarray(m.CInverted(fc.CmSplit(materialSplit, T, T.length)), E);
+                diff = Math.abs(Ttemp[i] - T[i]);
+                cnt++;
             }
         }
         return T;

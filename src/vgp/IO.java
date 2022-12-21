@@ -342,13 +342,20 @@ public class IO {
 
         String a = br.readLine();
         while(a != null){
+//            System.out.println(a);
             materialArray.add(a.split("\t"));
             a = br.readLine();
         }
         double[][] materialMatrix = new double[materialArray.size()][6];
         for(int i = 0 ; i < materialArray.size(); i++){
             for(int j = 0; j < materialArray.get(i).length - 1; j++){
-                materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j]));
+                if(j == 2){
+                    materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j])) * 1000000.0;
+
+                }
+                else{
+                    materialMatrix[i][j] = Double.parseDouble(String.valueOf(materialArray.get(i)[j]));
+                }
             }
             materialMatrix[i][5] = x;
         }

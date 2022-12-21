@@ -229,7 +229,7 @@ public class FEM {
         inputList = io.inputList;
 
         while(this.start < time) {
-            m.material(inputList, splitModel);
+            m.materialTASEF(inputList, splitModel);
             materialSplitU.add(m.getLayerListSplit());
             layerCountUpdate.add(m.layerCount);
             this.femTASEF(this.start, time, materialSplitU.get(cnt), adiabatic);
@@ -291,7 +291,7 @@ public class FEM {
         for(int i = 0; i < materialSplit.size(); i++) {
             material.addAll(materialSplit.get(i));
         }
-        for(int i = 0; i < material.size(); i++){
+        for(int i = 0; i < this.Tsplit.length; i++){
             if(i == 0) {
                 this.Esplit[i] = fc.getE(0, material.get(i), this.Tsplit, i);
             }
@@ -321,9 +321,7 @@ public class FEM {
                 System.out.print("%");
                 c++;
             }
-
             double[] Ttemp = new double[this.Tsplit.length + 2];
-            double[] Etemp = new double[this.Tsplit.length];
             Texposed = fire.getTexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
             Tunexposed = fire.getTunexposed(i * 1.0 / Constants.TIME_STEPS_PER_SECOND);
 
@@ -346,7 +344,8 @@ public class FEM {
             //K is the matrix where conduction is specified
 
             //Step 3: repeat until final time is reached
-            double[][] cmInv = m.CInverted(fc.CmSplit(materialSplit, this.Tsplit, fc.getGlobalMatrixM())); //voidL is initiated here, need some change to be able to skip this row.
+            //voidL is initiated when using m.CInverted, need some change to be able to skip this row.
+            double[][] cmInv = m.CInverted(fc.CmSplit(materialSplit, this.Tsplit, fc.getGlobalMatrixM()));
             K = fc.KSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Q = fc.getQ(this.Tsplit, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
 
@@ -368,7 +367,7 @@ public class FEM {
             if(Material.splitNodes.size() != 0) {
                 if (this.Tcheck(Material.splitNodes, Tsplit) && Constants.MODEL > 1 ) {
                     this.start = (i + 1) * 1.0 / Constants.TIME_STEPS_PER_SECOND;
-                    arraycopy(this.Tsplit, 0, Ltemp, 2, Ttemp.length - 2);
+                    arraycopy(this.Tsplit, 0, Ttemp, 2, Ttemp.length - 2);
                     this.finished = -1;
                     break;
                 }
