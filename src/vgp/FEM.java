@@ -349,10 +349,9 @@ public class FEM {
             K = fc.KSplit(materialSplit, TsplitMax, fc.getGlobalMatrixM());
             Q = fc.getQ(this.Tsplit, Texposed, Tunexposed, adiabatic, fc.getVoidLayer());
 
-            double[] D = m.arraySubtraction(Q, m.matrisXarray(K, this.Tsplit));
-            double[] E = m.arrayXconstant(D, 1.0 / Constants.TIME_STEPS_PER_SECOND);
+            double[] E = m.arrayXconstant(m.arraySubtraction(Q, m.matrisXarray(K, this.Tsplit)), 1.0 / Constants.TIME_STEPS_PER_SECOND);
 
-            this.Esplit = m.arrayAddition(this.Esplit, m.arrayAddition(Q, E));
+            this.Esplit = m.arrayAddition(this.Esplit, E);
             this.Tsplit = fc.getTfromE(materialSplit, this.Tsplit, this.Esplit);
 
             for (int j = 0; j < Tsplit.length; j++) {
