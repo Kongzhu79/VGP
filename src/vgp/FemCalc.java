@@ -64,9 +64,9 @@ public class FemCalc {
                 double temperatureOverLastInput = elementTemperature - layerMaterial[i - 1][0];
                 double differenceInput = layerMaterial[i][2] - layerMaterial[i - 1][2];
                 double differenceTemperature = layerMaterial[i][0] - layerMaterial[i - 1][0];
-                double kPerTemperatureIncrement = differenceInput / differenceTemperature;
+                double ePerTemperatureIncrement = differenceInput / differenceTemperature;
 
-                c = (layerMaterial[i - 1][2] + temperatureOverLastInput * kPerTemperatureIncrement) / T[elementNumber];
+                c = (layerMaterial[i - 1][2] + temperatureOverLastInput * ePerTemperatureIncrement) / T[elementNumber];
                 break;
             }
         }
@@ -276,9 +276,9 @@ public class FemCalc {
                     //different entalphy steps in the material files. For this case, the temperature often jumps between two different temperatures indefinitely.
                     //The routine skips the normal iteration and uses a step wise increase or decrease of the temperature until convergence is reached.
                     if(T[i] > Ttemp[i]){
-                        T[i] = T[i] - diff * 0.1;
+                        T[i] = T[i] - diff * 0.05;
                     } else{
-                        T[i] = T[i] + diff * 0.1;
+                        T[i] = T[i] + diff * 0.05;
                     }
                 } else{
                     T[i] = Math.pow(T[i] * Ttemp[i], 1 / 2.0);

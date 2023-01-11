@@ -342,7 +342,6 @@ public class IO {
 
         String a = br.readLine();
         while(a != null){
-//            System.out.println(a);
             materialArray.add(a.split("\t"));
             a = br.readLine();
         }
