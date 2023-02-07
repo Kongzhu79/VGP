@@ -3,4 +3,8 @@
 *.pdf
 out/*
 .run/*
-
+*.xml
+.class
+.iml
+.properties
+build/*

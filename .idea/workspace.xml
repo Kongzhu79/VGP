@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebc4e1ac-3da9-4e65-b1d6-abf6a82d2ec4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/VGP.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Konstanter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/MaterialData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Matris.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
