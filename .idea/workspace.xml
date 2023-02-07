@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="VGP:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+    <list default="true" id="ebc4e1ac-3da9-4e65-b1d6-abf6a82d2ec4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/VGP.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/FemCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/FemCalc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Konstanter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/MaterialData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Matris.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,89 +30,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/vgp/Constants.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/FEM.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/FemCalc.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Fire.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/IO.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Main.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Material.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/vgp/Matrix.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="29wZh05wO1ccXOaQ9JYxZrC7oXf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="2LPh2mRU39r7I9WkHsRjEjnidez" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/joakim.sandstrom/github/VGP&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-16.0.1" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="vgp.Main" />
-      <module name="VGP" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="vgp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ebccff66-966f-433a-b373-5e96ed18d64b" name="Default Changelist" comment="" />
-      <created>1654026224284</created>
+      <changelist id="ebc4e1ac-3da9-4e65-b1d6-abf6a82d2ec4" name="Changes" comment="" />
+      <created>1675778424958</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1654026224284</updated>
+      <updated>1675778424958</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/VGP$Main.ic" NAME="Main Coverage Results" MODIFIED="1654680546149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>vgp.*</FILTER>
-    </SUITE>
   </component>
 </project>
