@@ -28,13 +28,21 @@ VGP 2.0 is a finite element code for temperature calculations in one dimension t
         <time in seconds> <Tf>
         etc...
         
-or as 
+<dl> <dd> <dl> <dd> 
+        or as  
+
 
         <time in seconds> <Tr> <Tg>
         <time in seconds> <Tr> <Tg>
         etc...
 
-for cases where different radiation- and gas temperatures are required.
+</dd> </dl>
+</dd> </dl>
+<dl> <dd> 
+        <dl> <dd> 
+                for cases where different radiation- and gas temperatures are required.
+        </dd> </dl>
+</dd> </dl>
 
 7. Material are created as text files saved in the folder specified in VGP.txt. One file per material is needed and the file is written on the form
 
