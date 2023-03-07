@@ -16,14 +16,14 @@ public class Constants {
     public static int MODEL;
 
 /* 1 = Specific heat, each layer is one element
- * 30 = Specific heat, each layer is divided into multiple elements
- * 3 = Enthalpy, each layer is divided into multiple elements
+ * 2 = Specific heat, each layer is divided into multiple elements. Includes fall off
+ * 3 = Obsolete model due to improvements in model 2
+ * 4 = Enthalpy, each layer is divided into multiple elements
  */
 
     public static int NUMBER_OF_MM_PER_LAYER;
     public static int TIME_STEPS_PER_SECOND;
     public static int SECONDS_BETWEEN_PRINT_OUT;
-
     static int FIRE_CURVE_EXPOSED;
     static int FIRE_CURVE_UNEXPOSED;
 
