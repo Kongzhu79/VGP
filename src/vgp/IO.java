@@ -20,7 +20,7 @@ public class IO {
     String configFilePath;
     String inputFilePath;
     String outputFilePath;
-    String fireFilePath;
+    public static String fireFilePath;
     public static String materialFolderPath;
     public static ArrayList<String[]> inputList;
     ArrayList<String[]> configList;
