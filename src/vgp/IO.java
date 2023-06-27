@@ -42,35 +42,37 @@ public class IO {
         time = this.getTime();
     }
     public String[] folderName()throws IOException{
-
-        BufferedReader br = new BufferedReader(new FileReader("C:\\VGP\\VGP.txt"));
+        String currentWorkingPath = System.getProperty("user.dir");
+        BufferedReader br = new BufferedReader(new FileReader(currentWorkingPath + "\\VGP.txt"));
+        
         String[] folderList= new String[5];
         String a = br.readLine();
         String s = "";
 
         while (a != null){
-            String[] fName = a.split(" ");
+            String[] fName = a.split(" ");              
+            
             if(fName[0].equalsIgnoreCase("CONFIG_PATH")){
-                s = a.substring(a.indexOf("'") + 1);
-                folderList[0] = s;
+                s = a.substring(a.indexOf("'") + 1);                
+                folderList[0] = currentWorkingPath + "\\" + s;
             }
             else if(fName[0].equalsIgnoreCase("INPUT_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[1] = s;
+                folderList[1] = currentWorkingPath + "\\" + s;
             }
             else if(fName[0].equalsIgnoreCase("OUTPUT_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[2] = s;
+                folderList[2] = currentWorkingPath + "\\" + s;
             }
             else if(fName[0].equalsIgnoreCase("MATERIAL_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[3] = s;
+                folderList[3] = currentWorkingPath + "\\" + s;
             }
             else if(fName[0].equalsIgnoreCase("FIRE_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[4] = s;
+                folderList[4] = currentWorkingPath + "\\" + s;
             }
-            a = br.readLine();
+            a = br.readLine();   
         }
         br.close();
 
