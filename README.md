@@ -5,7 +5,7 @@ VGP 2.0 is a finite element code for temperature calculations in one dimension t
 ## Installation
 
 1. Install [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) or any IDE that can handle java-code projects.
-2. Copy the code by downloading the code or clone it using github desktop. A description of how-to is given [here](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop).
+2. Copy the code by downloading the code or clone it using github desktop. A description of how-to is given [here]((https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)).
 3. Create a .txt-file called VGP.txt and save it in a folder called c:\VGP\. This file should contain paths to files and folders of other input files used by VGP. The file should be written on the form
 
         CONFIG_PATH '<path><file name of the config file>.txt  
