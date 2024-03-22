@@ -42,8 +42,7 @@ public class IO {
         time = this.getTime();
     }
     public String[] folderName()throws IOException{
-        String currentWorkingPath = System.getProperty("user.dir");
-        BufferedReader br = new BufferedReader(new FileReader(currentWorkingPath + "\\VGP.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("C:\\VGP\\VGP.txt"));
         
         String[] folderList= new String[5];
         String a = br.readLine();
@@ -54,23 +53,23 @@ public class IO {
             
             if(fName[0].equalsIgnoreCase("CONFIG_PATH")){
                 s = a.substring(a.indexOf("'") + 1);                
-                folderList[0] = currentWorkingPath + "\\" + s;
+                folderList[0] = s;
             }
             else if(fName[0].equalsIgnoreCase("INPUT_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[1] = currentWorkingPath + "\\" + s;
+                folderList[1] = s;
             }
             else if(fName[0].equalsIgnoreCase("OUTPUT_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[2] = currentWorkingPath + "\\" + s;
+                folderList[2] = s;
             }
             else if(fName[0].equalsIgnoreCase("MATERIAL_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[3] = currentWorkingPath + "\\" + s;
+                folderList[3] = s;
             }
             else if(fName[0].equalsIgnoreCase("FIRE_PATH")){
                 s = a.substring(a.indexOf("'") + 1);
-                folderList[4] = currentWorkingPath + "\\" + s;
+                folderList[4] = s;
             }
             a = br.readLine();   
         }

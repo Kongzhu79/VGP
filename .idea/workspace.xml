@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="VGP:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebc4e1ac-3da9-4e65-b1d6-abf6a82d2ec4" name="Changes" comment="">
+    <list default="true" id="5a280bc3-5092-4072-b5a5-5d2dca36966e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VGP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/VGP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FEM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/FemCalc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Fire.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/IO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VGP/vgp/Material.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vgp/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vgp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vgp/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,50 +28,41 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2LPh2mRU39r7I9WkHsRjEjnidez" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2bUNwAjLkZnKclxb4GLvLhTpXVs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="vgp.Main" />
-      <module name="VGP" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JarApplication">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <method v="2" />
-    </configuration>
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ebc4e1ac-3da9-4e65-b1d6-abf6a82d2ec4" name="Changes" comment="" />
-      <created>1675778424958</created>
+      <changelist id="5a280bc3-5092-4072-b5a5-5d2dca36966e" name="Changes" comment="" />
+      <created>1706265935016</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675778424958</updated>
+      <updated>1706265935016</updated>
     </task>
     <servers />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

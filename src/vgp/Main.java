@@ -7,6 +7,8 @@ package vgp;
 
 import java.io.*;
 
+import static java.lang.System.*;
+
 /**
  *
  * @author jsm
@@ -17,7 +19,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        long startTime = System.nanoTime();
+        long startTime = nanoTime();
         IO io = new IO();
         Material m = new Material();
         FEM f = new FEM();
@@ -29,7 +31,7 @@ public class Main {
 //Can be approximated using the default model by setting the fall-off temperature to
 //a value higher than the max fire temperature
         if (Constants.MODEL == 1) {
-            System.out.println("Model 1");
+            out.println("Model 1");
             m.material(IO.inputList, false);
             f.fem(io.getTime(), m.getLayerList(), c.getAdiabatic());
             io.SystemOutSimple(f.getTarray());
@@ -37,7 +39,7 @@ public class Main {
 
 //Explicit solver, Specific heat, each layer is divided into multiple elements - default model
         else if (Constants.MODEL == 2) {
-            System.out.println("Model 2");
+            out.println("Model 2");
             m.material(IO.inputList, true);
             f.femSplitFallOff(io.getTime(), m.getLayerListSplitUpdate(), c.getAdiabatic(), IO.inputList, true);
             io.SystemOut(m.getLayerThickness(), f.TList, f.getLayerCountUpdate());
@@ -45,19 +47,19 @@ public class Main {
 //Explicit solver, Specific heat, each layer is divided into multiple elements
 //Can be approximated using the default model by setting the fall-off temperature to 0
         else if (Constants.MODEL == 3) {
-            System.out.println("Model 3");
+            out.println("Model 3");
             m.material(IO.inputList, true);
             f.femSplit(io.getTime(), m.getLayerListSplit(), c.getAdiabatic());
             io.SystemOutOld(m.getLayerThickness(), f.getTarray(), m.getLayerCount());
         }
 //Explicit solver, Specific heat, each layer is divided into multiple elements - default model
         else if (Constants.MODEL == 4) {
-            System.out.println("Model 4");
+            out.println("Model 4");
             m.materialTASEF(IO.inputList, true);
             f.femTASEFFallOff(io.getTime(), m.getLayerListSplitUpdate(), c.getAdiabatic(), IO.inputList, true);
             io.SystemOut(m.getLayerThickness(), f.TList, f.getLayerCountUpdate());
         }
-        long endTime = System.nanoTime();
+        long endTime = nanoTime();
         io.printTime(startTime, endTime);
     }
 }
