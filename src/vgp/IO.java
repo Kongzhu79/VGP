@@ -168,8 +168,14 @@ public class IO {
 
         int a = Tarray.length;
         for(int i = 0; i < a;){
-            System.out.print(dfTime.format((i / 60.0)).replace(",", ".") + "\t");
-            print.write(dfTime.format((i / 60.0)).replace(",", ".") + "\t");
+            if(Constants.SECONDS_BETWEEN_PRINT_OUT < 60){
+                System.out.print(dfTime.format(i).replace(",", ".") + "\t");
+                print.write(dfTime.format(i).replace(",", ".") + "\t");
+            }
+            else{
+                System.out.print(dfTime.format((i / 60.0)).replace(",", ".") + "\t");
+                print.write(dfTime.format((i / 60.0)).replace(",", ".") + "\t");
+            }
             for(int j = 1; j < Tarray[0].length; j++){
                 System.out.print(df.format(Tarray[i][j]).replace(",", ".") + "\t");
                 print.write(df.format(Tarray[i][j]).replace(",", ".") + "\t");
@@ -275,8 +281,16 @@ public class IO {
             int lNew = TList.get(k).get(0).length;
             for (int i = 0; i < temp.size(); i++) {
                 if((t % Constants.SECONDS_BETWEEN_PRINT_OUT) == 0) {
-                    System.out.printf(timeAlign, (t / 60));
-                    print.write(String.format(timeAlign, (t / 60)));
+                    if(Constants.SECONDS_BETWEEN_PRINT_OUT < 60){
+                        System.out.printf(timeAlign, t);
+                        print.write(String.format(timeAlign, t));
+                    }
+                    else{
+                        System.out.printf(timeAlign, (t / 60));
+                        print.write(String.format(timeAlign, (t / 60)));
+                    }
+//                    System.out.printf(timeAlign, (t / 60));
+//                    print.write(String.format(timeAlign, (t / 60)));
 
                     System.out.printf(align, df1.format(temp.get(i)[1]).replace(",", "."));
                     print.write(String.format(align, df1.format(temp.get(i)[layerCountUpdate.get(k)[1]]).replace(",", ".")));
